@@ -1,0 +1,20 @@
+Tuesday, February 6, 2024
+
+I initialized a react app using npx create-react-app nucampsite --template redux command.  I figured Redux will be useful down the 
+line.  I installed the same dependancies as the 2024 nucampsite.  I am following that example to create this app.
+
+The current plan is to first just render both the chart with the 100 boxes and a default set of names to pass in as data.
+After that point, it should prompt the user with a form to enter new people and assign each person a random box until all the
+boxes have been filled.  Also an option to view all of the entries and edit if desired.  
+
+For now, it is framed as each person has an object with name, shortname, and email in addition to a randomly assigned combo
+of AFC and NFC.  I'm not sure if this will change to simplify the process of entering info, and rendering to the chart.
+
+The chart may either consist of 100 box components.  Components of 10 boxes forming a row.  10 row components.  Or if
+there is some kind of chart component I can add.  This part will likely not be explained in nucampsite.  
+
+Now I am just poking around and setting up a github repository.  
+
+Make the Redux page a component that can be acessed for experimental purposes.  Replace the App return with a rendering of 
+the default persons including all the info from their object.  probably need to push each person to an array of objects for React 
+to iterate.  
