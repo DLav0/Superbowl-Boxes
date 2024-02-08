@@ -27,3 +27,31 @@ I basically rendered the initial Redux page with a header above it with the text
 into it's own component and removed the <header> div.  Then modified App.js to include the new header with the ReduxInit component
 beneath it.  Git commit "Redux Component".
 
+I think the easy part is done.  Need to set up interactivity to add people to the list.  I'll just have a form on the front page.
+Worry about styling later.  I guess first get the state redifined.  Just keep in mind that refresing the page will reset evertything.
+
+I read through the default Redux Counter App.  Seems confusing.  Need to update the state of the persons array with a form input.
+initialize with the dummies I created by default.  Add to the array grabbing a random combo without changing the numbers of the people
+already on the list.  It's not going to change an array in javascript.  I'm not really sure how to do this with Redux.  I could probably 
+use a push command on a js object, but that's not going to work with the React State Parameters.
+
+The other thing is to figure out how to make the chart and display the shortnames based on the person's numbers.
+
+I'd like to get to the point where I can enter an entry, one at a time.  Then view each entry and have a button next to it to edit.
+Then some kind of modal to re enter the info.  And editing the person's info does not change the numbers.  So I guess each combo is 
+randomly assigned, but does not change as people are added and edtited.  Or enter all one hundred names before assigning the combos.
+That may be more desireable.  
+
+Thurs, Feb 8, 2024
+
+Set up a page router and a link.  If I put '/list' into the Chrome address bar, the numbers randomize.  I guess the randomBox script is
+called again.  Also randomizes if I refresh the page.  If I use the link set up using the <Link> component, the numbers do not refresh.
+I think at this point, the person objects are in the same state.  Note, using back and forward in the browser will reset the state if
+the route was typed in directly, but will not if the link was used.  Was this the way in worked in Pizza Portfolio?
+
+Not really sure how to do the styling on the list page.  I'd like them in the same box, but text justified to the left like it was before.
+
+I removed the React import from App.js and it seems to work.  This import is not in App.js in i-heart-react or nucampsite 2024
+
+Click on any name in the list, open a modal with the persons info, have an option to change the name, shortname, or email.  
+

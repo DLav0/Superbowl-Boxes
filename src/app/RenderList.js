@@ -1,8 +1,15 @@
-
+import { personsHard } from "./logical/randomBox"
+import ListItem from './ListItem'
 
 const RenderList = () => {
     return (
-        <h1> This Page </h1>
-
+        <div className=''>
+           {personsHard.map((person, index) => 
+                <ListItem key={index} person={person} />
+           )}
+        </div>
     )
 }
+
+export default RenderList
+
