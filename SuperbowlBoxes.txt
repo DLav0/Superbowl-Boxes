@@ -18,3 +18,12 @@ Now I am just poking around and setting up a github repository.
 Make the Redux page a component that can be acessed for experimental purposes.  Replace the App return with a rendering of 
 the default persons including all the info from their object.  probably need to push each person to an array of objects for React 
 to iterate.  
+
+Probably will use the react-router-dom to switch between pages.  Start with a list on one page.
+
+Wed, Feb 7, 2024
+
+I basically rendered the initial Redux page with a header above it with the text "Superbowl Boxes Pool".  I made the Redux return 
+into it's own component and removed the <header> div.  Then modified App.js to include the new header with the ReduxInit component
+beneath it.  Git commit "Redux Component".
+
