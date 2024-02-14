@@ -6,7 +6,7 @@ import Homepage from './app/Homepage';
 
 function App() {
   return (
-    <div className='App-header'>
+    <div className=''>
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/list' element={<RenderList />} />
@@ -17,7 +17,3 @@ function App() {
 
 export default App;
 
-<Routes>
-<Route path='/' element={<Homepage />} />
-<Route path='/list' element={<RenderList />} />
-</Routes> 

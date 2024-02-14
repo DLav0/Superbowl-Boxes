@@ -40,6 +40,8 @@
 
 .site-header {
   font-family: monospace;
+  font-size: 60px;
+  margin-bottom: 40px;
 }
 
 .listitems {
@@ -50,4 +52,18 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   text-align: right;
+}
+
+.inputs {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: left;
+  color: black;
+}
+
+.list {
+  color: black;
+  font-size: 18px;
 }

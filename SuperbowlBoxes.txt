@@ -55,3 +55,26 @@ I removed the React import from App.js and it seems to work.  This import is not
 
 Click on any name in the list, open a modal with the persons info, have an option to change the name, shortname, or email.  
 
+I got it to justify the text as before.  If more pages are added, the App-header class can not surround everything.  I'll have to 
+figure out the styling.  Seems not as easy as just bootstrap.  
+
+Fri, Feb 9, 2024
+
+Tried to make a form to input info.  Having difficulty installing react-redux-form in this project.  I may just have to continue 
+and use formic or something.  I just want to enter a name, email, and shortname with validators.  then have the input change the state
+by adding a new object to the persons array.  
+
+Tues, Feb 13, 2024
+
+Going to follow the new Nucamp project to add in a form that accepts the inputs I am looking for.  This submitted data needs to 
+somehow be made into an object and assigned one of the combos.  Not sure about how this needs to be done in React.  I doubt the
+JS I wrote will do all that.  
+
+I used formik to make a small form to input information.  Having difficulty styling the input form to my desire.  Maybe worry about
+that later?  
+
+The styling issue was because I did not import Bootstrap in index.js.  The styling is decent enough.  Added validation to the formik
+form.  
+
+Need to select people from list and bring up a modal to edit info without changing the numbers.  First figure how to assign random 
+combos and update the list as the user enters them in the form.  Then figure out the boxes page.  

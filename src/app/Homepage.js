@@ -8,7 +8,7 @@ const Homepage = () => {
                 <h1 className="site-header">Superbowl Boxes Pool </h1>
             </header> 
             <Link to={'/list'}>
-                <h1>Lets Get Started</h1>
+                <h1>Let's Get Started</h1>
             </Link>
         </div>
     )
