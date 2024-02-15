@@ -2,13 +2,14 @@ import { Button, Label, Col, FormGroup } from 'reactstrap'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import { validateInputForm } from './logical/validateInputForm'
 
-const InputForm = () => {
+const InputForm = (props) => {
 
     const handleSubmit = (values, { resetForm }) => {
         console.log('form values:', values);
         console.log('in JSON format:', JSON.stringify(values));
         console.log('In the form of a question?')
-        resetForm();
+        props.updateState(values)
+
     }
 
 

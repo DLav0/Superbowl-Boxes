@@ -2,7 +2,7 @@ const afc = [0,1,2,3,4,5,6,7,8,9]
 
 const nfc = [0,1,2,3,4,5,6,7,8,9]
 
-const combos = [ [0,0], [0,1], [0,2], [0,3], [0,4], [0,5], [0,6], [0,7], [0,8], [0,9], 
+ export const combos = [ [0,0], [0,1], [0,2], [0,3], [0,4], [0,5], [0,6], [0,7], [0,8], [0,9], 
                  [1,0], [1,1], [1,2], [1,3], [1,4], [1,5], [1,6], [1,7], [1,8], [1,9],  
                  [2,0], [2,1], [2,2], [2,3], [2,4], [2,5], [2,6], [2,7], [2,8], [2,9],  
                  [3,0], [3,1], [3,2], [3,3], [3,4], [3,5], [3,6], [3,7], [3,8], [3,9],  
@@ -30,11 +30,11 @@ const personDefault = {
 }
 
 
-function junction() {
+ function junction() {
     return combos.splice(Math.floor(Math.random()*combos.length),1)[0];
 }
 
-class Person {
+export class Person {
     constructor(name, shortName, email) {
         this.name = name;
         this.shortName = shortName;
@@ -105,6 +105,7 @@ const nfcmixed = shuffleArray2(nfc)
 // Probably use something like Workshop 5 in Bootstrap.  See file in Bootstrap file.
 
 export const personsHard = [person1, person2, person3, person4, person5, person6, person7];
+
 
 // When does the class call actually run when the app is started?
 // I could make random numbers every time a new name is entered.  Think I'd rather have it assign the number and leave it.  Otherwise,

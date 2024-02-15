@@ -78,3 +78,18 @@ form.
 
 Need to select people from list and bring up a modal to edit info without changing the numbers.  First figure how to assign random 
 combos and update the list as the user enters them in the form.  Then figure out the boxes page.  
+
+Thurs, Feb 15, 2024
+
+I used a state hook and put it in the parent component of the App.  I can now add names to the list, and have them rendered.  It seems
+to take a random combination like it is supposed to.
+
+Next I want to get it to invert the order of the list, and assign an id number to each person.  Then set up a link on each person's name 
+that can be used to modify their info, without changine their number.  Also consider setting up the boxes on the next page.  
+
+Animation to slide from one page to the next.  
+
+It is working.  I'm not sure about consequenses of using the JS on the randomBox page.  Should the combos be a part of the React state?
+All the inputed info is gone if the page refreshes.  Any way to make the system more cheat proof?  Could be an issue for some people.
+
+I could release this online, just as a demonstration.
