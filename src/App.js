@@ -12,18 +12,21 @@ function App() {
 
   const updateState = (vals) => {
       
-      const personX = new Person(vals.name, vals.shortName, vals.email)
-      
+      const personX = new Person(vals.name, vals.shortName, vals.email, persons.length)
       addPerson(persons.concat(personX))
-      console.log(combos.length)
+      console.log(personX)
 
+  }
+
+  const updatePerson = (personID) => {
+    console.log(personID)
   }
 
   return (
     <div className=''>
       <Routes>
         <Route path='/' element={<Homepage />} />
-        <Route path='/list' element={<RenderList persons={persons} updateState={updateState} />} />
+        <Route path='/list' element={<RenderList persons={persons} updateState={updateState} updatePerson={updatePerson} />} />
       </Routes> 
     </div>
   );

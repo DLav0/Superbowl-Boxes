@@ -93,3 +93,19 @@ It is working.  I'm not sure about consequenses of using the JS on the randomBox
 All the inputed info is gone if the page refreshes.  Any way to make the system more cheat proof?  Could be an issue for some people.
 
 I could release this online, just as a demonstration.
+
+Error messages could include adding more than 100 people.  Also check for repeat names and emails.  
+
+Could give the option to just enter names, names and short names, or names, shortnames, and email
+
+Fri, Feb 16, 2024
+
+I got the modal to display any person on the list that is clicked on.  I'd like to add a button to this to be able to edit the name and
+email, without changing the numbers.  ANother thing to do is to check to verify that a name has not already been added.  Check for repeat 
+emails, names, and shortnames.  If the randomBox works correctly, there should be no repeates.  THis may be a good time to try and make the boxes.
+follow tick tack toe model?
+
+Sat, Feb 17, 2024
+
+Maybe an option to alphabetize the list of names, if that is possible.  Remove numbers and list alphabetically?  Index for map funciton 
+will be backwards based on how the objects are defined.  

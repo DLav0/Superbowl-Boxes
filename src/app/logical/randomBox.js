@@ -35,7 +35,8 @@ const personDefault = {
 }
 
 export class Person {
-    constructor(name, shortName, email) {
+    constructor(name, shortName, email, id) {
+        this.id = id
         this.name = name;
         this.shortName = shortName;
         this.email = email;
@@ -50,13 +51,13 @@ export class Person {
 // this.nfc = nfc.splice(Math.floor(Math.random()*nfc.length),1)[0];
 // This is wrong.  Would only be good for 10 people.  Does not include all combinations.
 
-const person1 = new Person('Daniel Lavery','Dan L.','lavery0@yahoo.com')
-const person2 = new Person('Bill Belicheck','Billy','randoEmail@deflate.com')
-const person3 = new Person('OJ Simpson','OJ','didntdoit@snailmail.com')
-const person4 = new Person('Sean Lavery','Pop','slavery@gmail.com')
-const person5 = new Person('Out of Ideas','Out','tellmesomething@yahoo.com')
-const person6 = new Person('Tommy Tutliger','Squirl','squirelwhirl@gmail.com')
-const person7 = new Person('Tammy Tuglugger','Beets','tammy@gmail.com')
+const person1 = new Person('Daniel Lavery','Dan L.','lavery0@yahoo.com', 0)
+const person2 = new Person('Bill Belicheck','Billy','randoEmail@deflate.com', 1)
+const person3 = new Person('OJ Simpson','OJ','didntdoit@snailmail.com', 2)
+const person4 = new Person('Sean Lavery','Pop','slavery@gmail.com', 3)
+const person5 = new Person('Out of Ideas','Out','tellmesomething@yahoo.com', 4)
+const person6 = new Person('Tommy Tutliger','Squirl','squirelwhirl@gmail.com', 5)
+const person7 = new Person('Tammy Tuglugger','Beets','tammy@gmail.com', 6)
 
 // console.log(combos.length)
 // console.log(nfc)

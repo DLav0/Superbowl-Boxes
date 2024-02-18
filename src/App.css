@@ -67,3 +67,8 @@
   color: black;
   font-size: 18px;
 }
+
+.listItem:hover {
+  cursor: pointer;
+  color: rgb(17, 0, 255);
+}
