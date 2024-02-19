@@ -5,6 +5,10 @@ const PersonCard = (props) => {
 
     const person = props.person
 
+    const openEdit = () => {
+        props.toggleE()
+    }
+
     return (
         <>
             <Modal isOpen={props.isOpen} toggle={props.toggle}>
@@ -23,6 +27,9 @@ const PersonCard = (props) => {
                             </dl>
                         </CardBody>
                         </Card>
+                        <Button color="primary" onClick={openEdit}>
+                            Edit
+                        </Button>
                     </ModalBody>
                 </ModalHeader>
             </Modal>

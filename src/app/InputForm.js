@@ -9,6 +9,7 @@ const InputForm = (props) => {
         console.log('in JSON format:', JSON.stringify(values));
         console.log('In the form of a question?')
         props.updateState(values)
+        // resetForm()
 
     }
 

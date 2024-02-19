@@ -109,3 +109,27 @@ Sat, Feb 17, 2024
 
 Maybe an option to alphabetize the list of names, if that is possible.  Remove numbers and list alphabetically?  Index for map funciton 
 will be backwards based on how the objects are defined.  
+
+Sun, Feb 18, 2024
+
+I got the edit modal to open upon pressing an 'Edit' button in the person card.  Passed values from an input form along with the id of the 
+person being editted to the App component.  Need to get app to modify the person without changing the numbers or anyone else's information. 
+Also want the edit form to have default entries of the current name, short name, and email.
+
+Diffifulty moddifying the persons state and getting to work.  Looks like in changes the correct object, but somehting is thowing off the map funciton
+after the change is made.  Can't really figure out.  Looking at React documentation.  could move on and come back to this feature later.  
+
+May also want to make a remove option.  May want to come back to this later.  What's the best way to handle deletes?  Maybe you can't make
+edits without ranomizing the whole thing
+
+Monday, Feb 19, 2024
+
+I had to use a function to copy the filtered object to be editted.  This way, i can manipulate the object without changing the properties in the 
+persons array.  It worked, im just trying to only change the array using the change state function from React.  May want to modify the randomBox
+thing so I don't have nested objects, and can use the spread operator to do what I want it to.  For now, it uses 
+
+let personY = JSON.parse(JSON.stringify(personZ))[0]
+
+Could add a delete feature as well.  Not sure how that would work with combos.  May want to re sctructure the whole thing.  What if it randomizes 
+every time an update is made?  That would make it hard to cheat.  Or a way to put in all the names, then randomly assign a square at the end.  
+Probably want something to check for repeats on all the inputs.  

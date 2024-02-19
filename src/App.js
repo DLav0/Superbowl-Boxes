@@ -10,16 +10,36 @@ function App() {
 
   const [persons, addPerson] = useState(personsHard)
 
-  const updateState = (vals) => {
-      
-      const personX = new Person(vals.name, vals.shortName, vals.email, persons.length)
-      addPerson(persons.concat(personX))
-      console.log(personX)
+  const updateState = (vals) => {  
+    const personX = new Person(vals.name, vals.shortName, vals.email, persons.length)
+    addPerson(persons.concat(personX))
+    console.log(personX)
 
   }
 
-  const updatePerson = (personID) => {
-    console.log(personID)
+  // I don't think concat is mutating.  Can use mutating functions in useState call?
+
+  const updatePerson = (vals, userID) => {
+    const personZ = persons.filter((person) => person.id === userID)
+    let personY = JSON.parse(JSON.stringify(personZ))[0]
+    personY.name = vals.name
+    personY.shortName = vals.shortName
+    personY.email = vals.email
+    console.log(personY)
+
+    // freecodecamp JS copy an Object
+
+
+    const nextPersons = persons.map((person, i) => {
+      if (i === userID) {
+        return personY;
+      } else {
+        // The rest haven't changed
+        return person;
+      }
+    });
+      addPerson(nextPersons);
+    // React docs updating arrays
   }
 
   return (
@@ -33,4 +53,6 @@ function App() {
 }
 
 export default App;
+
+// Don't try to mutate a state variable
 
