@@ -133,3 +133,73 @@ let personY = JSON.parse(JSON.stringify(personZ))[0]
 Could add a delete feature as well.  Not sure how that would work with combos.  May want to re sctructure the whole thing.  What if it randomizes 
 every time an update is made?  That would make it hard to cheat.  Or a way to put in all the names, then randomly assign a square at the end.  
 Probably want something to check for repeats on all the inputs.  
+
+Can a map function do the same thing as the JSON.parse?  Idea is to copy the selected object without changing it.  Find a copy of nucampsite on
+github?  Would like to have a copy of completed project.  Switch state control to Redux?  Maybe convert Pizza Portfolio.  useReducer hook?
+
+Maybe use the simplified state control to make list app in React Native.
+
+Tues, Feb 20, 2024
+
+I updated the class component to leave this.both with an empty string.  Now I can use spread syntax to isolate the person to be editd from the 
+methods changing the copy.  
+
+Had the idea to basically have the user enter in all the names, review and verify that all the info is correct, then assign the random values to 
+each person.  This would deter cheating by seeing a good number and slipping in someones name.  I guess for now I'll just make the boxes like I 
+intended.  Need to construct boxes somehow anyway.  
+
+Authentication and memory if the page accidentally gets refresed.  Maybe not scale to have users submit their own info.  That would be complicated.
+But the one user could have the feature to save progress, and save the chart.  The chart should be interactive and printable.  
+
+Add a footer?  Got routing for boxes page to work with button on list page.  animation from one page to the next.  
+
+UX Put in all the names.  Once 100 is reached, prompt to be sure to go over all of the names and verify.  Can edit and delete at any point.  figuere 
+out how to structure the delete.  Needs to shift id numbers around?  or the next person is assigned the missing number?  When 100 names are input, somehow
+a button to view the boxes appears.  boxes should be interactive?  Maybe more important to just have an option to print it out.  or email.
+This way, the submit and random assignments are done at the same time to discourage cheating.
+
+Next level would be to actually email each person in the pool with their respective numbers.  Def not sure how to send out 100 emails based on user input.
+Would send their numbers, the chart as a link, possibly an option to log into the pool and use the interactive chart to see where their friends and enemies 
+are on the chart.  Separate first and last names?  May be a benefit in an alphabetical list.  
+
+Wed, Feb 21, 2024
+
+Just going to procede with current project with addition of the 10 x 10 grid with names in the correct places.  
+
+Could make an option just to list the players in order of the combos.  Having difficulty creating the grid for the final output.  
+
+I think the randomized method of grabbing the combos is good.  May still be able to incorporate if the assignments are made
+after the user enters all the names.  
+
+Wondering if redux is better hooked up with a server than React state.
+
+Thurs, Feb 22, 2024
+
+I got a static table rendered on the boxes page.  It uses basic html.  Not sure if this is a good model or not.  I would probably 
+need to give each box it's own id.  There might be an automated way that uses less code, but that might take a long time to figure 
+out.  It might be faster just to punch in all the html.  
+
+The selected box should show the person's info somewhere on the screen and keep the box highlighted until another click is made.  The 
+hover could cause a render of the person in real time, then stay on one person if clicked.  
+
+FIgured out a way to map the entire table using React components.  Not sure how to get the correct name to the correct box.  This is taking 
+awhile, and I'm not even sure that interactivity with the boxes will be possible.  Or too complicated.  May want to reevaluate the whole thing.
+Not much progress today.  
+
+If the box is fed the right person, it may not be complicatied to make on onhover or onclick to show the person's info.  Not sure about the other
+way around though.  Focus on a chart that can be printed or emailed.
+
+Fri, Feb 23, 2024
+
+Kind of got the chart to work but there is a problem.  with multiple people in the same row, it generates another 10 collumns in the row.  
+It also is not showing boxes for rows without anyone.  These may be related.  I dont thing the console.log double thing matters.  I'm 
+prety sure the afcArray is correct.  
+
+Kindof works.  Now it renders 100 squares but will not put multiple people in a row.  
+
+Sat, Feb 24, 2024
+
+Got the chart to work correctly.  Just had to modify the map function for the row array.  
+
+The App is actually pretty self explanatory at this point.  Don't have labels for the chart.  Find way to print the chart as a jpg or pdf?
+Maybe nest the table in a card?  I might do the hover thing first.  Make table into component.  THis will be good for rendering purposes.

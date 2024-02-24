@@ -5,30 +5,36 @@ import RenderList from './app/RenderList'
 import ReduxInit from './app/ReduxInit'
 import './App.css';
 import Homepage from './app/Homepage';
+import Boxes from "./app/Boxes";
 
 function App() {
 
   const [persons, addPerson] = useState(personsHard)
 
+  
+
   const updateState = (vals) => {  
     const personX = new Person(vals.name, vals.shortName, vals.email, persons.length)
     addPerson(persons.concat(personX))
     console.log(personX)
-
+    console.log(persons.length)
+    console.log(persons)
+    
   }
 
   // I don't think concat is mutating.  Can use mutating functions in useState call?
 
   const updatePerson = (vals, userID) => {
     const personZ = persons.filter((person) => person.id === userID)
-    let personY = JSON.parse(JSON.stringify(personZ))[0]
+    let personY = {...personZ[0]}
     personY.name = vals.name
     personY.shortName = vals.shortName
     personY.email = vals.email
-    console.log(personY)
+    // console.log(personZ[0])
 
     // freecodecamp JS copy an Object
-
+    // JSON.parse(JSON.stringify(personZ))[0]
+    // updated class to remove nested array. Now the spread method works.  
 
     const nextPersons = persons.map((person, i) => {
       if (i === userID) {
@@ -42,11 +48,14 @@ function App() {
     // React docs updating arrays
   }
 
+  //console.log(persons)  
+
   return (
     <div className=''>
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/list' element={<RenderList persons={persons} updateState={updateState} updatePerson={updatePerson} />} />
+        <Route path='/boxes' element={<Boxes persons={persons} />} />
       </Routes> 
     </div>
   );
@@ -54,5 +63,5 @@ function App() {
 
 export default App;
 
-// Don't try to mutate a state variable
+// Don't try to mutate a state variable 
 

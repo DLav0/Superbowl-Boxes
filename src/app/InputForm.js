@@ -1,6 +1,7 @@
 import { Button, Label, Col, FormGroup } from 'reactstrap'
 import { Formik, Field, Form, ErrorMessage } from 'formik'
 import { validateInputForm } from './logical/validateInputForm'
+import { Link } from 'react-router-dom'
 
 const InputForm = (props) => {
 
@@ -71,10 +72,17 @@ const InputForm = (props) => {
                     </Col>
                 </FormGroup>   
                 <FormGroup row>
-                    <Col md={{size: 10, offset: 2}}>
+                    <Col md={{size: 6, offset: 2}}>
                         <Button type='submit' color='primary'>
                             Add Person
                         </Button>
+                    </Col>
+                    <Col md={{size: 2, offset: 2}}>
+                        <Link to={'/boxes'}>
+                            <Button>
+                                View Boxes --&gt;&gt;
+                            </Button>
+                        </Link>
                     </Col>
                 </FormGroup>                             
             </Form>

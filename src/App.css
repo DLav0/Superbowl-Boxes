@@ -1,4 +1,4 @@
-.App {
+.tableComp {
   text-align: center;
 }
 
@@ -71,4 +71,43 @@
 .listItem:hover {
   cursor: pointer;
   color: rgb(17, 0, 255);
+}
+
+table {
+
+  border: 4px solid black;
+  align-items: right;
+}
+
+
+.tableBorder td, .tableBorder th {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  border: 3px solid rgb(0, 0, 0);
+}
+
+#Akram {
+  background-color: rgb(229, 144, 240);
+}
+
+.tableBorder td:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(20, 13, 128);
+}
+
+.tdStyle {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  border: 3px solid rgb(0, 0, 0);
+}
+
+#blankBox {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  border: 3px solid rgb(0, 0, 0);
+  background-color: rgb(192, 240, 217)
 }

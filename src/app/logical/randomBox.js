@@ -43,6 +43,7 @@ export class Person {
         this.both = junction()
         this.afc = this.both[0]
         this.nfc = this.both[1]
+        this.both = ''
 
     }
 }
@@ -64,6 +65,7 @@ const person7 = new Person('Tammy Tuglugger','Beets','tammy@gmail.com', 6)
 // console.log(person1)
 // console.log(person2)
 // console.log(person3)
+///
 // console.log(person4)
 // console.log(person5)
 // console.log(person6)
