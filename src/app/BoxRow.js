@@ -94,7 +94,7 @@ const BoxRow = (props) => {
     return (
         <>
             {mapArray.map((input, i) => 
-                <Box key={i} person={input} />
+                <Box key={i} person={input} hoverPerson={props.hoverPerson} lockPerson={props.lockPerson} />
             )}
         </>
     )

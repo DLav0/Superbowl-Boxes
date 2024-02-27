@@ -1,7 +1,20 @@
+
 const Box = (props) => {
+
+    const hoverPerson = props.hoverPerson
+    const lockPerson = props.lockPerson
+
+    const hoverPersonOver = () => {
+        hoverPerson(props.person.id)
+    }
+
+    const clickPerson = () => {
+        lockPerson(props.person.id)
+    }
+
     if (props.person.shortName) {
     return (
-        <td>{props.person.shortName}</td>
+        <td onMouseOver={hoverPersonOver} onMouseUp={clickPerson}>{props.person.shortName}</td>
     )
     }
     else {

@@ -203,3 +203,34 @@ Got the chart to work correctly.  Just had to modify the map function for the ro
 
 The App is actually pretty self explanatory at this point.  Don't have labels for the chart.  Find way to print the chart as a jpg or pdf?
 Maybe nest the table in a card?  I might do the hover thing first.  Make table into component.  THis will be good for rendering purposes.
+
+App still works even after shutting down running domain.  Refreshing the page shuts it down.  
+
+Sun, Feb 25, 2024
+
+Tyring to get the hover thing to work for the Table.  Should show a persons info somewhere on the page when the pointer hovers over.  When clicked,
+either open a modal with their info, or just freeze the display.  Also want the chart to be labelled.
+
+I think a state cotrolled in a parent has to pass functions through the children to be changed.  I'm pretty sure that it is one of the benefits of
+Redux.  The state can be manipulated remotely from any componenet.  
+
+I guess for demonstration purposes, fill fill in 95 default people so that the user can reach 100.  This shows how it works while also implementing
+a loop that will not allow repeats.  
+
+I got the info to render to the right of the chart when mouse hovers over any given box.  Want to be able to freeze this data if the person clicks, 
+or somehting.  Not sure about best way to do this.  Maybe a button to enable hover until a box is clicked on.  Need to style the personCardNM a little 
+better.  Consider updateing to use React Col and Row compoenents as opposed to using divs.  The whole app could be styled better.  Position card so it
+moves with the page?
+
+It's not like you can reeasign numbers.  Could switch names around i guess.  Be kind of difficult.  
+
+Positioning of chart and display card is a little wacky when changing the screen size.  Lots of margin when it stacks.  Which view ports are most important?
+right now, it looks the best on the laptop screen.
+
+Hover works until clicked.  a button then shows up to unfreeze to allow hovering to work after the button is clicked.  
+
+Monday, February 26, 2024
+
+I  enabled the chart to render just one person to the card if a person is clicked on.  This dissables the hover and allows one person to be 
+clicked on to change the state.  I also added an unfreeze button that reenables the hover that the page intitiates with.  The button does not
+appear when the state is set to hover.  

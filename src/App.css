@@ -111,3 +111,8 @@ table {
   border: 3px solid rgb(0, 0, 0);
   background-color: rgb(192, 240, 217)
 }
+
+.dispCard {
+  color: grey;
+  margin-top: 80%;
+}

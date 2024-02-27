@@ -27,7 +27,7 @@ const BoxesTable = (props) => {
         return (
             <>
           <table className="tableBorder">
-            <caption>NFC I guess this goes below the chart</caption>
+
             <thead>
                 <tr >
                 <th ></th>
@@ -50,7 +50,7 @@ const BoxesTable = (props) => {
                 return (
                   <tr key={i}>
                   <th>{i}</th>
-                  <BoxRow  afcPass={row} />
+                  <BoxRow  afcPass={row} hoverPerson={props.hoverPerson} lockPerson={props.lockPerson} />
                   </tr>
                 )
               
