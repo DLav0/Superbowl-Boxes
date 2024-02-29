@@ -5,6 +5,7 @@ import InputForm from "./InputForm";
 import { Col, Container, Row} from 'reactstrap'
 import PersonCard from "./PersonCard";
 import PersonEdit from "./PersonEdit";
+import ErrorMsg from './ErrorMsg'
 
 
 
@@ -43,6 +44,11 @@ const RenderList = (props) => {
                     <div className=''>
                         <InputForm updateState={updateState}/>
                     </div>
+                </div>
+            </div>
+            <div className='row'>
+                <div className='col-md-8'>
+                    <ErrorMsg isError={props.isError}/>
                 </div>
             </div>
             <div className="row">

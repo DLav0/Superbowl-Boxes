@@ -12,6 +12,12 @@ const PersonEdit = (props) => {
         props.updatePerson(values, ID)
     }
 
+    const initialVals = {
+        name: person.name,
+        shortName: person.shortName,
+        email: person.email
+    }
+
 
     return (      
         <>
@@ -20,11 +26,7 @@ const PersonEdit = (props) => {
                 {person.name} ({person.shortName}) -{person.email}
                 <ModalBody>
                     <Formik
-                        initialValues={{
-                            name: 'NameGame',
-                            shortName: 'Game',
-                            email: '@@@'
-                        }}
+                        initialValues={initialVals}
                         onSubmit={handleSubmit}
                         validate={validateInputForm}
                     >

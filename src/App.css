@@ -116,3 +116,15 @@ table {
   color: grey;
   margin-top: 80%;
 }
+
+.chartLabel {
+  font-size: 30px;
+}
+
+.chartLabelY {
+  font-size: 40px;
+}
+
+.blacken {
+  background-color: black;
+}

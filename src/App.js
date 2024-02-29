@@ -10,10 +10,29 @@ import Boxes from "./app/Boxes";
 function App() {
 
   const [persons, addPerson] = useState(personsHard)
+  const [isError, changeError] = useState(false)
 
   
 
   const updateState = (vals) => {  
+
+    changeError(false)
+    
+    for (const person of persons) {
+      if (person.name === vals.name) {
+        changeError('This name has already been added')
+        return
+      }
+      if (person.shortName === vals.shortName) {
+        changeError('This Short Name has already been used')
+        return
+      }
+      if (person.email === vals.email) {
+        changeError('This email has already been used')
+        return
+      }
+    }
+
     const personX = new Person(vals.name, vals.shortName, vals.email, persons.length)
     addPerson(persons.concat(personX))
     console.log(personX)
@@ -54,7 +73,7 @@ function App() {
     <div className=''>
       <Routes>
         <Route path='/' element={<Homepage />} />
-        <Route path='/list' element={<RenderList persons={persons} updateState={updateState} updatePerson={updatePerson} />} />
+        <Route path='/list' element={<RenderList persons={persons} updateState={updateState} updatePerson={updatePerson} isError={isError} />} />
         <Route path='/boxes' element={<Boxes persons={persons} />} />
       </Routes> 
     </div>

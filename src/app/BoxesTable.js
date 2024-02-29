@@ -29,7 +29,13 @@ const BoxesTable = (props) => {
           <table className="tableBorder">
 
             <thead>
+                <tr>
+                  <th ></th>
+                  <th className='blacken'></th>
+                  <th colspan="11" className='chartLabel'>N F C</th>
+                </tr>
                 <tr >
+                <th className='blacken'></th>
                 <th ></th>
                 <th >0</th>
                 <th >1</th>
@@ -46,13 +52,59 @@ const BoxesTable = (props) => {
               <tbody>
      
                {afcArray.map((row, i) => {
+
+                if (i === 0) {
+                                
+                  return (
+                    <tr key={i}>  
+                    <th  rowspan="10">
+                      <div className='chartLabel'>A</div>
+                      <div className='chartLabel'>F</div>
+                      <div className='chartLabel'>C</div>
+                    </th>               
+                    <th>{i}</th>
+                    <BoxRow  afcPass={row} hoverPerson={props.hoverPerson} lockPerson={props.lockPerson} />
+                    </tr>
+                  )
+                  }
+
+                // if (i === 3) {
                  
-                return (
-                  <tr key={i}>
-                  <th>{i}</th>
-                  <BoxRow  afcPass={row} hoverPerson={props.hoverPerson} lockPerson={props.lockPerson} />
-                  </tr>
-                )
+                // return (
+                //   <tr key={i}>  
+                //   <th  rowspan="3">
+                //     <div className='chartLabel'>A</div>
+                //     <div className='chartLabel'>F</div>
+                //     <div className='chartLabel'>C</div>
+                //   </th>               
+                //   <th>{i}</th>
+                //   <BoxRow  afcPass={row} hoverPerson={props.hoverPerson} lockPerson={props.lockPerson} />
+                //   </tr>
+                // )
+                // }
+
+                // if (i === 6) {
+                 
+                //   return (
+                //     <tr key={i}>  
+                //     <th rowspan='4'></th>             
+                //     <th>{i}</th>
+                //     <BoxRow  afcPass={row} hoverPerson={props.hoverPerson} lockPerson={props.lockPerson} />
+                //     </tr>
+                //   )
+                //   }
+
+                
+
+                else {
+                  return (
+                    <tr key={i}>  
+                                 
+                    <th>{i}</th>
+                    <BoxRow  afcPass={row} hoverPerson={props.hoverPerson} lockPerson={props.lockPerson} />
+                    </tr>
+                  )
+                }
               
               })} 
                

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Button } from 'reactstrap'
+import { Card, CardBody, CardHeader } from 'reactstrap'
 import BoxesTable from './BoxesTable'
 import { useState } from "react";
 import PersonCardNM from './PersonCardNM';
@@ -36,10 +36,16 @@ const Boxes = (props) => {
     <Link to={'/list'}>
     <p>To List Page</p>
     </Link> 
-    <div className='containter'>
+    <div className='containter '>
       <div className='row'>
+
         <div className='col-md-8'>
-          <BoxesTable persons={props.persons} hoverPerson={hoverPerson} lockPerson={lockPerson}/>
+
+ 
+              
+              <BoxesTable persons={props.persons} hoverPerson={hoverPerson} lockPerson={lockPerson}/>
+              
+
         </div>
         <div className='col-md-4'>
           <PersonCardNM person={personDisp} />

@@ -11,8 +11,8 @@ export const validateInputForm = (values) => {
         errors.email = 'Email should contain an @'
     }
 
-    if (values.shortName.length > 10) {
-        errors.shortName = 'The shortname must be less than 10 characters'
+    if (values.shortName.length > 13) {
+        errors.shortName = 'The shortname must be less than 13 characters.'
     }
 
     return errors

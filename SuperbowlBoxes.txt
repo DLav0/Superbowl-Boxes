@@ -234,3 +234,62 @@ Monday, February 26, 2024
 I  enabled the chart to render just one person to the card if a person is clicked on.  This dissables the hover and allows one person to be 
 clicked on to change the state.  I also added an unfreeze button that reenables the hover that the page intitiates with.  The button does not
 appear when the state is set to hover.  
+
+Works best on the laptop screen.  I like the interactivity.  It would be nice if everyone participating in the pool had access to this page.
+
+Maybe the next thing is to find a way to not accidentally add the same person twice.  May modify the renderlist to not show the numbers.
+Wondering about accidentally adding the same person twice and ways that the user could cheat.  Maybe a delete option as well.  In the editting 
+modal, I'd like the existing info to be prefilled in the input feilds.  
+
+It's occuring to me that using the back button in the browser will reset the state?  I guess only in certain situations.
+
+Should I try to use Redux for this?  I could update Pizza Portfolio to use function components and the new Redux tools.
+Propbably just compeltely start over w/ Pizza.  Leave the old one, make a new one for the hell of it.  Want to deploy 
+this app to google?  Think I'd rather deploy coffee, just to see how much it takes to do.  
+
+Tues, Feb 27, 2024
+
+I'll try to get the edditing default feilds to work.  That wasn't as hard as I thought.  
+
+Maybe now check for repeats?  Where have I seen this done?  Bootstrap workshop 5.  Needs to iterate for repeats and stop before sending to change the
+state.  Probably want to do this for both adding names, and making edits.  Start with adding duplicate names.  This doesn't make the user experience more
+complicated if done correctly.   As long as the state variables are not mutated, I think all JS if fair game.  Got the name to work, need to figure out how
+to alert the user.  
+
+Got a Reactstrap warning to show if the user attempts a repeat name.  It also does not add the person to the list.  The error message is hard coded.  
+This should change based on which feild had a repeat.  There are probably a few ways to do this.  I could just leave the hard coded message.  
+Got it to make a custom message for a repeat in any of the feilds.  Seems to work as intended.  May want to implement the same test for person edit.
+I'm just going to leave the edit for now.  
+
+Based on the current square size, 6 digits is the limit for characters in the short name wihout streching the grid.  if a space is used, however,
+two lines of text show in the box, and it works.  Not sure what to do here.  Easy thing is to just shorten the validator to 6.  May need to toy with
+rendering, or make the boxes bigger.  
+
+How to get the chart labeled and make to a format that can be printed?
+
+Formatting is bad.  Especially for small viewports.  Media quary to change the distance between the chart and the card when collumns collapse.  
+The shortName thing with the space may be difficult.  
+
+May want to set up a server and authentication to store the state of the app.  This way, if it is accidentally shut down, person can
+pick up where he left off.  How do I create a server separate from Nucampsite?  I just need one directory for persons..
+
+Wed, Feb 28, 2024
+
+I could try to imbed the chart on a card?  I don't know much about positiong and styling.  How to make a link to make the chart printable.  
+The card thing is not working well.  I may try to figure out html or jsx labels.  
+
+Get the person card to move with the page on Boxes page.  
+
+I abandoned the card.  integrated an NFC label pretty easily.  The AFC boxes are harder to add to because each box in each row is part of a map
+function.  I could try to get it to do what I want using the map function, or figure out how to better conjoin a separate AFC lable that sticks
+with the left side of the chart.  Is there a way to just hard code another column before the chart?  Can the vertical cells be merged like the 
+horizontal ones?  How can I save the chart saved as a pdf? 
+
+Thurs, Feb 29, 2024
+
+Seeing about putting in another column to label the vertical axis.  Used three massive if statements just to get the Chart to render 'AFC' on 
+the side.  I doubt I can get the cells to merge, so it looks kind of bad.
+
+I got the cells containing 'AFC' to merge, but not the others.  It's kind of a lot of code to just do what it does.  I wonder if I could make
+a loop or something to make it less sloppy.  Right now there are three if statements containing a return for the Row input.  It's nice having 
+the axis lables built into the chart.
