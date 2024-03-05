@@ -38,14 +38,8 @@ const Boxes = (props) => {
     </Link> 
     <div className='containter '>
       <div className='row'>
-
         <div className='col-md-8'>
-
- 
-              
-              <BoxesTable persons={props.persons} hoverPerson={hoverPerson} lockPerson={lockPerson}/>
-              
-
+           <BoxesTable persons={props.persons} hoverPerson={hoverPerson} lockPerson={lockPerson}/>
         </div>
         <div className='col-md-4'>
           <PersonCardNM person={personDisp} />

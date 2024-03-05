@@ -12,7 +12,7 @@ function App() {
   const [persons, addPerson] = useState(personsHard)
   const [isError, changeError] = useState(false)
 
-  
+
 
   const updateState = (vals) => {  
 

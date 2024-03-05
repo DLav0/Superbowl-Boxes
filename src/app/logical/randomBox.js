@@ -17,9 +17,13 @@ const nfc = [0,1,2,3,4,5,6,7,8,9]
 
 
 //It's going to splice a random number until the a4ray is empty.  
-//Each person gets a random AFC and NFC number.  I'm pretty sure that will work3
+//Each person gets a random AFC and NFC number.  I'm pretty sure that will work
 //Everyone gets a unique combination.  Could use a class.
 //I'm still curious how to randomize an array
+
+//Ultimitely, I want the server to remember who has been added and which combos remain.  
+
+// wondering if there is more efficient way to create all of these combinations.  Could look back at matlab project.
 
 const personDefault = {
     name:"Billy B",

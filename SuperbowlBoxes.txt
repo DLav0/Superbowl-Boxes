@@ -292,4 +292,96 @@ the side.  I doubt I can get the cells to merge, so it looks kind of bad.
 
 I got the cells containing 'AFC' to merge, but not the others.  It's kind of a lot of code to just do what it does.  I wonder if I could make
 a loop or something to make it less sloppy.  Right now there are three if statements containing a return for the Row input.  It's nice having 
-the axis lables built into the chart.
+the axis lables built into the chart.  
+
+Now there's just one conditional for row 0.  This merges the entire collumn.  
+
+Can set up a server with a login?  User can log in and access a partially made pool, and continue where he left off.  Maybe also an option to
+delete persons and restart the whole thing.  Should make a branch for this?  Maybe not, I could just checkout to earlier version if needed. 
+Figure out how to allow enter up to 13 digits with a space, but neither word longer than 6 digits.   
+
+Friday, March 1, 2024
+
+I'm looking at action creators on the original React Nucampsite.  Could configure it to use a fake server and use fetch to save the entries.
+Ideally, a user can log in and return to his particular save point.  Put in some names and return later to edit and view the chart.
+Authentication does not seem to be covered here.  Could for now just have the inputs posted on a json server.  Worry about authenticaiton later.
+I'm pretty sure I can set this up without using Redux, but I'm not really sure. 
+
+Saturday, March 2, 2024
+
+Not sure what would happen if someone were to clone an app that uses a json server.  Can the server be pushed to GitHub as well.  The reason 
+is that I'd like to show off the functionality of the app to anyone who acesses it on GitHub.  
+
+Ideally, the App functions as it does now without the server running.  But saves the progress if the server is turned on.  Not sure if there
+is a way to do this.  I guess server interactivity is another level of complexity.  
+
+There's a way to install json-server locally.  Not sure if this matters or not.  I'm just trying to find a way to make the server acessible
+to anyone cloning the boxes repository.  I wonder why Nucamp didn't put the server in the React Repository.  Maybe because it is used for 
+React Native as well?  I guess this research counts as project time.  Still not sure whether or not i need to set up Redux.  What is the 
+reasoning to Redux if a backend is in place?
+
+https://www.freecodecamp.org/news/json-server-for-frontend-development/
+
+Want a user to be able to sign in and have access to their specific pool information.  Adding interacivity and the ability to print out the
+chart is critical.  Those and the shortName thing.  
+
+Think I can setup a json server wherever.  Can a json server be pushed to GitHub.  
+
+Following tutorial.  Confused about typescript vs Javascript.  I'll need to get this to work in JS.  Difference between hook and function?
+DIfference between useState and useEffect?  I think the interface and colons and <> brackets are typescript.
+
+Are useFetch return variables in constant updating state?  So the loading shows until the data is returned?  Need to decide if I want to
+do the tuturial or just dive in with my own app.  It's frusturating bc I'm not familiar with typescpript and it only demonstrates read operations.
+I would need to figure out the other three as well to get up and running.  Look into adding db.json to a git repository.  Is this easy to do?
+Would it be easy to set up the App and Server using clone?  
+
+I can set up a json server wherever.  I assume the file can be loaded to github.  The user would just need to use the right port when running the
+App.  
+
+I think the useEffect block reiterates when any given promise is fulfilled.  That way the loading and errors are current on the page render.  
+
+May want to finish up React Course before proceding.  Could do this tutorial in the mean time?  Maybe do the tutorial without typescript to see
+if I can get it to work.  
+
+Sunday, Mar 3, 2024
+
+Does the cloner need to have json server installed for a project to run?
+
+Maybe set up using a json server now and try to hook up to the back end of the course later.  
+
+Use effect is interaction with the server in the tutorial.  Interpreting to JS seems difficult.  Can update app to be able to add a new name
+to the list?  I guess I could enable server GET requests for now and add post, put, delete later on.  Still not sure if I should bother with 
+Redux or not.  In theory, the APP could be used by a large volume of users, each with their own persons data.  Maybe I will set up redux.
+
+I'm wondering if the App could have default functionality when no user is logged in.  Then be able to save the data for someone who is.  
+
+May want to take some time to reorgonize the components in this app.
+
+I have a feeling the hard coded combos will bite me at some point.  May need to modify some things.  If a user is logged in, the combos 
+need to be kept track of.  Reseting the combos will cause problems.  Functionality is preliminary.
+
+Monday, Mar 3, 2024
+
+The six letter limit thing can be done with regex?
+
+Maybe load intitial persons from a server and work my way up?  Not sure whether or not to use redux.
+The combos would need to be in the database as well.  I guess intitially set it up for just one user.
+essentially give the app memory to load to and from.  Maybe don't use the class for the time being.  
+Just get it to read the default data.  Would I put the combos in a useEffect block?  If you hard code people
+in, it needs to take the appropriate combos and save the remaining ones.  
+
+Get this online for one admin validation.  Just for me to show that it works. I guess if it was cloned, 
+the db would be cloned with it.  The json.server would need to be run somehow to acccess the data.  I could
+put it online as is, with the state resetting every time it is loaded.  Just to get a thing online.  Ultimitely, 
+server functionality would be good.  
+
+May want to do a git branch here?  
+
+May need to restructure combos as objects so that the json server will work.  db needs to be in json format.  
+
+Tues, Mar 5, 2024
+
+I can always make a brach later, or just checkout if need be.  
+
+The concat and edit will likely be replaced with calls to the json server.  I'd like to find a way to render the persons array.  I can just manually
+enter the data.  It would be nice to figure that out though.  json.stringify?
