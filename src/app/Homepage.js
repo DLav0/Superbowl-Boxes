@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import RenderList from './RenderList'
 
 const Homepage = () => {
+    console.log('homePage')
     return (
         <div className='App-header'>
             <header>

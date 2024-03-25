@@ -128,3 +128,12 @@ table {
 .blacken {
   background-color: black;
 }
+
+.loading {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+}

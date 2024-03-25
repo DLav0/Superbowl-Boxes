@@ -32,7 +32,7 @@ const BoxesTable = (props) => {
                 <tr>
                   <th ></th>
                   <th className='blacken'></th>
-                  <th colspan="11" className='chartLabel'>N F C</th>
+                  <th colSpan="11" className='chartLabel'>N F C</th>
                 </tr>
                 <tr >
                 <th className='blacken'></th>
@@ -57,7 +57,7 @@ const BoxesTable = (props) => {
                                 
                   return (
                     <tr key={i}>  
-                    <th  rowspan="10">
+                    <th  rowSpan="10">
                       <div className='chartLabel'>A</div>
                       <div className='chartLabel'>F</div>
                       <div className='chartLabel'>C</div>

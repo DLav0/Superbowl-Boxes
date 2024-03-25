@@ -13,6 +13,43 @@ const nfc = [0,1,2,3,4,5,6,7,8,9]
                  [8,0], [8,1], [8,2], [8,3], [8,4], [8,5], [8,6], [8,7], [8,8], [8,9],  
                  [9,0], [9,1], [9,2], [9,3], [9,4], [9,5], [9,6], [9,7], [9,8], [9,9]  ]
 
+export const combos2 = [ [0,0], [0,1], [0,2], [0,3], [0,4], [0,5], [0,6], [0,7], [0,8], [0,9], 
+                 [1,0], [1,1], [1,2], [1,3], [1,4], [1,5], [1,6], [1,7], [1,8], [1,9],  
+                 [2,0], [2,1], [2,2], [2,3], [2,4], [2,5], [2,6], [2,7], [2,8], [2,9],  
+                 [3,0], [3,1], [3,2], [3,3], [3,4], [3,5], [3,6], [3,7], [3,8], [3,9],  
+                 [4,0], [4,1], [4,2], [4,3], [4,4], [4,5], [4,6], [4,7], [4,8], [4,9],  
+                 [5,0], [5,1], [5,2], [5,3], [5,4], [5,5], [5,6], [5,7], [5,8], [5,9],  
+                 [6,0], [6,1], [6,2], [6,3], [6,4], [6,5], [6,6], [6,7], [6,8], [6,9],  
+                 [7,0], [7,1], [7,2], [7,3], [7,4], [7,5], [7,6], [7,7], [7,8], [7,9],  
+                 [8,0], [8,1], [8,2], [8,3], [8,4], [8,5], [8,6], [8,7], [8,8], [8,9],  
+                 [9,0], [9,1], [9,2], [9,3], [9,4], [9,5], [9,6], [9,7], [9,8], [9,9]  ]
+
+   
+export const combosObj = []
+
+function junction2() {
+    return combos2.splice(0,1)[0]
+}
+
+// this is just to define all the objects.  Each combo will be make into a separate object.  Then the object can be applied to a person
+// then deleted.  Should the combosObj be a method of the combos constructor?  Does it matter?  Just a matter of how it is called.
+
+class Combos {
+    constructor() {
+        this.id = combosObj.length
+        this.both = junction2()
+        this.afc = this.both[0]
+        this.nfc = this.both[1]
+        this.both = ''
+    }
+}
+
+// export const personDB1 = new Combos()
+
+for (let i=0; i<100; i++) {
+    combosObj.push(new Combos())
+}
+
 
 
 
@@ -51,6 +88,7 @@ export class Person {
 
     }
 }
+
 
 // this.afc = afc.splice(Math.floor(Math.random()*afc.length),1)[0];
 // this.nfc = nfc.splice(Math.floor(Math.random()*nfc.length),1)[0];

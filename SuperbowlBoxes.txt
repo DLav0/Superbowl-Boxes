@@ -385,3 +385,229 @@ I can always make a brach later, or just checkout if need be.
 
 The concat and edit will likely be replaced with calls to the json server.  I'd like to find a way to render the persons array.  I can just manually
 enter the data.  It would be nice to figure that out though.  json.stringify?
+
+Ultimitely, I'd like to randomize the default inputs upon loading.  But then maintain their position when the user enters more people.  I guess for now,
+the default people will have static combos.
+
+Render list at this point is rendering the json data, but now the boxes are radomized while the list is constant, based on the data I put in the 
+db.json is static.  Next thing would be to set up the combos so that the database keeps track of which numbers have been used.  Need to enter into
+input feilds to add to or modify the database.  Myabe for now just set up the boxes to iterate what is in the list.  
+
+Confusing about when useEffect runs.  If i put /list in the url bar, it doesn't run.  If I use the links or the back buttons, it does.   
+
+Wed, Mar 6, 2024
+
+Needs to store all the possible combos, and delete onces assigned to a name.  Just get this basic construct to work.  You can edit db.json if 
+necessary.  
+
+Got a loop and class to designate all the combos as objects.  Not sure if I should use a push to server methdod, or just copy and paste all the combos.
+It might be good practice to push to the server somehow.  Maybe it would be better to get rid of the empty both string.  There may be a better way to do that.  
+
+Goal is to get it up and running using the server, to save my place and otherwise function as before.  Then, authentication to access a different server.
+Admin can pick up where he left off.  Differect data for each user based on log in credentials.  It might be best to ignore my hard data and just start with 
+an empty slate.  
+
+May have difficulty checking for repeats on a server.  I guess all I wrote is more of a template.  Probably need to make all these functions again with 
+the server data being referenced.  Is this a benefit to Redux?
+
+Thurs, Mar 7, 2024
+
+I got all the combos to render.  I like the format it is in.  Hopfully it doesn't do anything weird when site updates the db.  Can enhance formating if need 
+be.  Is there a way to eliminate .both after the afc and nfc have been defined?  There might be a different way to do this.  
+
+Next, need to use input feild to remove a combo as each person is defined.  I will also need to remove the combos already used by default data, which will Now
+not be randomized.  May not need to pass props around as much using the fake server.  
+
+Maybe start by gettning the input feild to add to database with just name, shortname, and email?  How else can all this be done?  Wondering if the same 
+state can be maintained as before.  Have a button somewhere to submit to the server?
+
+May be a good idea to review back end part and see if that helps here.  
+
+https://dev.to/ldakanno/making-a-post-request-using-json-server-h7c
+https://react.dev/reference/react/useEffect
+https://www.freecodecamp.org/news/json-server-for-frontend-development/
+
+Friday, March 8, 2024
+
+Not really getting anywhere as far as posting to the json server.  Tried to make custom hook, but it is not working.
+Realizing that testing will either require manually adjusting the db file, or some kind of delete that reverses the post.
+Should end up deleting a combo and adding a person or deleting the person and restoring the combo.  May need to find a 
+different way to ransomize.  could just have 100 people submitted, then random combos applied after.  The boxes component is
+based on people having afc and nfc as part of their properties.
+
+Can I just do a post fetch in JS?  
+
+Maybe make a component that is called when the input form is submitted.  Useeffect will run when the component is called.  
+I guess the server returns to the app either what has been posted or an error.  I think the state is supposed to be updated
+when the server is posted to.  This was done in Redux in Nucampsite.  
+
+I have my fetch request sent directly to the list component.  Should probably adjust this so that the state is updated.
+Would be nice to leave all the old props and function passing in place, with the server updated on the side.  
+
+So the state it initially empty, then populted when the server is accessed by the app.  I just want to see if I can get a
+person to post to the server at the moment.
+
+https://jasonwatmore.com/post/2020/02/01/react-fetch-http-post-request-examples
+
+componentdidmount() was outside of the render in a class component.
+
+Put useEffect in InputForm?
+
+Dependancy for useEffect must be a state variable?  Can it be any defined state using useState?
+
+https://stackoverflow.com/questions/75182498/how-can-i-trigger-the-useeffect-hook-with-a-button
+
+useState dependancies are variables in the react state.  Think the goal is to submit changes to server and update state at
+the same time.  
+
+I guess the state in React is anything that needs to be rendered.  Variable can be define outside of the state as intermediaries.  
+Post promises are not working.  
+
+Saturday, March 9, 2024
+
+I figured that the first .then after the post fetch needed two parts in it's consumption.  One for a succesful post, one for an error.
+The promises after that seem to only need one.  Not really clear on this, but it works.  Issue now is that the post is run every time the
+App rerenders.  Need to get it to run just when the handleClick for the input form is called.  Prevent running on page loading.  It's like
+every time I hit save, the app re renders.  
+
+I have a feeling that the json server is a pretty basic version of a real back end.  Not sure if there's much more I can do without the internet.  
+What would happen if I just put the post fetch in a function?  Why is useEffect necessary?.
+
+JSon server needs to be fed strings?
+
+When the code posts to the server properly, pass the data around to update the state as well.  I think the idea is to get the state to equal
+the server.  This way, I can also use the props structure in place.  
+
+Monday, March 11, 2024
+
+https://stackoverflow.com/questions/53253940/make-react-useeffect-hook-not-run-on-initial-render
+
+Trying to get the useefect post function to only render when dependancy changes.  The effect should be run like a function when the submit 
+to the input feild is clicked on.  
+
+Could manually go through and get rid of the both properties.  They aren't really serving any purpose.  
+
+Now it is rendering once through the useEffect block instead of twice.  Why does it run through everything twice?
+
+Tues, Mar 12, 2024
+
+I could make it skip the block twice somehow.  I'd rather figure out why it iterates through twice.  
+It has somehting to do with strict mode running everything twice.  I'd like to leave it on and figure a way around it.  For now, I may just continue with
+strict mode turned off.  I could wire it to ignore two renderings before being purely a function of runPost.
+
+Try to get it to work with strictMode on.  Try to get it to work using the custom hook.  Figure how to update the state and post at the same time.
+Try to get the fetch commands to work at the top of the app, then filter down to the list page and boxes.  Figure out how to basically cut a combo object, 
+and paste it's values into a new person in the db.  This will take values from the input and combine them with the values of the combo (afc and nfc).  Just 
+this for now.  
+
+Useref allows global variables to change without updating the state?  Why can't we just use regular js variables for this?
+
+I wonder if the useEffects can be placed outside of a component.  
+
+https://react.dev/reference/react/StrictMode
+https://stackoverflow.com/questions/50819162/why-is-my-function-being-called-twice-in-react
+
+Wondering if some kind of cleanup in effects can allow strict mode to stay on.  
+
+React will add variables and commands every time the app is re rendedered, which it does a lot.  I wonder if these
+variables are ok to be defined outside of components.  Can useEffect be run outside of the components?
+
+"React then calls cleanup and setup again if its dependencies changed since the last render."
+
+Should be ok.  I guess page switching is ok as long as runPost doesn't change with the page.  Feel like I'm 
+trying to use useEffect like a function.  Supposed to be asynch to the rest of the app I guess.  You'd think 
+what I'm trying to do would be a common thing.  The only thing I can think is if people use external state management
+like Redux.  I could switch it to a Redux app, but I'm already down this worm hole. 
+
+I don't mind the strictmode.  See if I can get it to work with StricMode on.  I'm not sure if there is a way around.  It seems like it just does the double render
+thing in development.  I may need to disable it.  Needs to run useEffect exclusively to post a new person.  
+
+Wed, Mar 13, 2024
+
+Is runPost always initiated to false when the page mounts?  I dont think strictmode has any impact if the code is in production.  It just renders
+everything twice.  Also runs the effects twice.
+
+Diffuculty getting to render when unmounting likely because the useEffect is inside of InputForm form, not RenderList.
+
+Put in a callback function for return in cleanup part of useEffect.  I guess the idea is if the useEffect funtion is pure, it won't matter how many times the
+block is called.  I'm not sure if this applies to me though.  I don't want the post to be undone after the fact.  Do I have an option to not run strictmode?
+With the read request, it won't matter.   It will just update the app state twice.  Problem is that when I run a post request twice, it will add
+to the database everytime the page is loaded.  There may still be a way around.  Check to see if the name has been added already.
+This may even benefit me as I want to check for duplicates anyway.  But I don't need it sending an error message because the 
+useEffect was called when the page loads.  
+
+I can use the custom hook to enable it not to run on mount.  Not sure if I can get the strictmode to be ok, and have the same functionality if 
+the App was actually run.  Does as expected with safemode on
+
+Thursday, Mar 14, 2024
+
+I will leave the fetch and post calls in their component for now.  If I get the dataabse updates as desired, then look to put these in App.js
+to update the App state at the same time.  I think I'll just leave it off for now.  Can try to get it back on later maybe.  
+
+Set the useEffect to be conditional to the ingoing body for the post request.  In the useEffect return, set the body back to null.  This should allow
+it to render while doing nothing, but will post if the body is defined.  Use the validation loop before going in.  Then post, then update the state
+somehow.  
+
+Monday, March 18, 2024
+
+Trying to set up the useEffect post.  Not really making much headway.  Not really working as I expected.  It's skipping the block on rerender, but
+also not posting from the input form.  json-server is inconsistant.  Keep getting errors.  What if it tries to post and fetch at the same time?
+Maybe that is an issue.  Need some kind of timeout?
+
+Not really getting anywhere.  I may have to implement Redux and use it's asynch functions.  Or another database API.  
+
+Research the difference between useEffect and function.  Also useRef.  It might be much easier if you turn off strict mode.  
+json-server -H 0.0.0.0 --watch db.json -p 8000 -d 1000 might work better
+
+Wednesday, March 20, 2024
+
+I got the useEffect to iterate and skip the post for Strictmode.  Also, database is updated with values from the form.  
+
+Need to figure out how to delete any combo and add it's values to the form values.  Should all be done in the same useEffect block?
+Also need to get the state to update after the transaction is made.  Could leave the useEffect where it is and pass the values up to
+App.js, or try to get the useEffect to run on App.js.  There is probably a better way to organize all this.  Maybe put the useEffect in its 
+own document.  Just need to pass props around.  It's getting to the point where it works, but the code is sloppy.  
+
+I updated the json server globally.  I was having issues with command not found and the server crashing during use.  Not sure if either of 
+these things will bite me in the ass.  
+
+Thurs, Mar 21, 2024
+
+Need to get the random combos logic adapted to draw from the database, and effectivelly save both the new entries, and used combos.  The validation
+needs to be implemented before submitting to the post.  Save the posts in the local state, then use that state to verify there is no repeats.  Maybe just 
+get the combos working first.  Could get the useFetch to update the state first.  Then worry about the input form.  
+
+Make a mode where you can start at zero entries and just use React State?  Probably wouldn't be useful.
+
+It does need to be able to transfer from database to React state for the list and boxes to work.  It might be better just to set up Redux as I have that 
+template.  
+
+Another alternative would be to get ommit using the React state.  Then each component would render directly from the database.  Better practice is probably 
+to update the state.  Need the useEffect in App.js to function as in input form.  Then fetch whenever the page is loaded.  May want to research using fetch to
+update the React state.  
+
+Sunday, March 24, 2024
+
+I'm going to try to make a fetch request and redefine the state in a useEffect block in App.js.  
+
+Took a fetch block from nucampsite an put in a useEffect block.  It consoles the persons array from db, but the error message is not great.  Kind of Realizing
+that the code is looking for an error message from the server, which I just turned off completely.  See if I can update the app state in this block.  
+
+I guess a call to server is best done in a useEffect block?  Why is this?
+
+Seems to be working.  The state is not updating when a post is made.  But the post is shown when refressing the page.  I guess the next thing is to delete the 
+combos and assign the numbers to a particular person.  Drawing from the json server is the only way I can think to "store" the changes made when using the app.
+
+After that, I can try to add authentication.  App could use short term memory mode.  this would do what it did before.  Maybe find a way to print the chart?
+Anyway, make it possible to access multiple pools using different log in names.  All data should share the same server.  Not sure if I can nest a set of 
+persons and combos multiple times in the same json server.  The ones accessed need to be distinct to each user.  
+
+I may just limit the short names entries to 6 digits to keep things simple.  
+
+Probably won't be able to do:  
+
+A functional app of this design should allow an admin to sign in and create the pool.  Then, people can log in with their credentials and submit their name, shortName, 
+and email.  Once 100 people are submitted, the admin can look over everything and look for mistakes.  The admin submits the pool, and everyone is emailed with
+their numbers, a link to the digital chart, and a printable file showing the chart.  Chart specifics include the name of the pool, specified by the admin.  Could
+expand the chart page to have an alphabetical of everyone by name.  Consider splitting into first and last names.  Hovering over a name highlights the 
+person's position in the chart.  

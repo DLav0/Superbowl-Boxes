@@ -1,18 +1,57 @@
 import { personsHard, Person, combos } from "./app/logical/randomBox"
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
 import RenderList from './app/RenderList'
 import ReduxInit from './app/ReduxInit'
 import './App.css';
 import Homepage from './app/Homepage';
 import Boxes from "./app/Boxes";
+import useFetch from "./app//logical/useFetch"
+
+//json-server --watch db.json --port 8000
+//The app should work if the server is down.  
 
 function App() {
+
+
+  // Any time it mounts, it should run this block a few times.  Multiple fetch calls will not be a problem.
+  useEffect(() => {
+    console.log('testThis')
+     
+    fetch('http://localhost:8000/persons')
+    .then(response => {
+        if (response.ok) {
+            return response;
+        } else {
+            const error = new Error(`Error ${response.status}: ${response.statusText}`);
+            error.response = response;
+            throw error;
+        }
+    },
+    error => {
+        const errMess = new Error(error.message);
+        throw errMess;
+    }
+    )
+        .then(response => response.json())
+        .then(persons => addPerson(persons))
+        .catch(error => console.log(error.message))
+  }, []);
+
+  // Pulled this from nucampsite action creators
+  // Ditch useFetch?
+
+  // It's doing the get request.  Can't get the data into local state.
+  //Update the state every time it loads?
 
   const [persons, addPerson] = useState(personsHard)
   const [isError, changeError] = useState(false)
 
+  // addPerson(personsDB) Infinite loop.
+  // If this fetch can work, the state will be updated when names are added to database.  No need to pass props from InputForm.  
+  // But yeah, this needs to work.  May need to prompt the fetch to happen after db is posted to.  
 
+  // I think state variables are local to component unless passed as props.
 
   const updateState = (vals) => {  
 
@@ -33,6 +72,7 @@ function App() {
       }
     }
 
+
     const personX = new Person(vals.name, vals.shortName, vals.email, persons.length)
     addPerson(persons.concat(personX))
     console.log(personX)
@@ -40,6 +80,8 @@ function App() {
     console.log(persons)
     
   }
+
+  // You can use js.  Just need to be particular when updating state variables.
 
   // I don't think concat is mutating.  Can use mutating functions in useState call?
 
@@ -49,6 +91,7 @@ function App() {
     personY.name = vals.name
     personY.shortName = vals.shortName
     personY.email = vals.email
+
     // console.log(personZ[0])
 
     // freecodecamp JS copy an Object
@@ -78,6 +121,7 @@ function App() {
       </Routes> 
     </div>
   );
+  
 }
 
 export default App;
