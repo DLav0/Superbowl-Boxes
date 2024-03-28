@@ -20,6 +20,8 @@ const RenderList = (props) => {
     const persons = props.persons
     const updateState = props.updateState
     const updatePerson = props.updatePerson
+    const isPending = props.isPending
+    const errorPass =  props.errorPass
     const [isOpen, toggleModal] = useState(false)
     const [isOpenE, toggleModalE] = useState(false)
     const [selectID, selectedPerson] = useState(0) 
@@ -42,12 +44,7 @@ const RenderList = (props) => {
 
     
 
-    const addPerson = (values) => {
-        console.log(values)
-        // toggleTest(!runTest)
-        
 
-    } 
 
     // useEffect(() => {
     //     console.log('Mount')
@@ -58,8 +55,8 @@ const RenderList = (props) => {
 
     // const { data: persons, isPending, error } = useFetch('http://localhost:8000/persons')
 
-    const isPending = false
-    const error = false
+   
+    
 
     if (isPending){
         return (
@@ -67,7 +64,7 @@ const RenderList = (props) => {
         )
     }
 
-    if (error){
+    if (errorPass){
         return (
             <h1 className="loading">There is an error.</h1>
         )
@@ -81,7 +78,7 @@ const RenderList = (props) => {
             <div className="row">
                 <div className="col-md-10 mt-5">
                     <div className=''>
-                        <InputForm addPerson={addPerson}/>
+                        <InputForm updateState={updateState}/>
                     </div>
                 </div>
             </div>

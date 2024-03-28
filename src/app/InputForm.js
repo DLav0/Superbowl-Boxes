@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from "react";
 
 const InputForm = (props) => {
 
-    
+    const updateState = props.updateState
     
     const [bodySkip, toggleSkip] = useState(false)
     const [bodyEntry, toggleEntry] = useState({name: 'NameGame'})
@@ -16,15 +16,18 @@ const InputForm = (props) => {
     const handleSubmit = (values, { resetForm }) => {
         console.log('form values:', values);
         console.log('in JSON format:', JSON.stringify(values));
-        props.addPerson(values)
-        toggleSkip(true)
-        toggleEntry(values)
-        togglePost(!runPost)
-        console.log(runPost)
+        updateState(values)
+        
+        // toggleSkip(true)
+        // toggleEntry(values)
+        // togglePost(!runPost)
+        // console.log(runPost)
         
         // resetForm()
 
     }
+
+ 
 
 
 
@@ -80,7 +83,10 @@ const InputForm = (props) => {
         error => { throw error; }      
     )
     .then(response => response.json())
-    .then(response => console.log(response)) 
+    .then(response => {
+        console.log(response)
+        console.log('stringthing')
+        })
     .catch(error => {
         console.log('post comment', error.message);
         alert('Your comment could not be posted\nError: ' + error.message); 
@@ -92,6 +98,8 @@ const InputForm = (props) => {
             toggleSkip(false)
         }
      }, [runPost] ); 
+
+     // Just leave the useEffect here uncommented.  As long as the handleSubmit does not call it, it won't have any effect.  
 
      // the fetch promise needs two parts to consume.  I guess it's two callback functions in .then()
      // Get the useEffect block to run only when runPost is changed.  

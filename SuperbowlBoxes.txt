@@ -611,3 +611,69 @@ and email.  Once 100 people are submitted, the admin can look over everything an
 their numbers, a link to the digital chart, and a printable file showing the chart.  Chart specifics include the name of the pool, specified by the admin.  Could
 expand the chart page to have an alphabetical of everyone by name.  Consider splitting into first and last names.  Hovering over a name highlights the 
 person's position in the chart.  
+
+May want to change the error handling for when the server is shut down.  Right now, it just shows an error and 'failed to fetch' in the console.
+Next thing is to get the delete and combine randomly working.  
+
+Monday, March 25, 2024
+
+Add a way to prevent repeat posts of the same name.  Maybe get the combos working first.  Now it doesn't have any error or loading messages.  See if 
+I can get these working.  Consolodate and restructure the documenst may be a good thing to do.  
+
+Got the loading message to work for RenderList.  Got generic error message to show if server is not running.  Try to consolidate the useEffect block in
+App.js.  Shortened the code used to generate the error.  .then for fetch does not require two outcomes as the post request seems to need.  
+
+Try to clean up App.js.   Maybe make a custom hook here to simplify App.js
+
+Tuesday, March 26, 2024
+
+https://www.w3schools.com/react/react_usestate.asp
+
+This might help adding the combos to added persons.  I guess by default, the updater function will insert car into previousState with callback function.
+I may want to get the add person to work before trying to consolidate App.js
+
+Not sure if useContext will be a good addition.  It's a way to pass the state globally.  Maybe use this on input form to pass values to App.js.
+I guess these variables are considered part of the state.
+
+useRef makes a mutable variable that does not update with the state.  Any time the state is changed, the app re renders.  This variable can be
+changed without doing that.  The big thing is that the state does not update when the useRef variable is changed.  Does every component have 
+access to this variable?  Or does it have to be passed as props?  
+
+It seems like React picks up on infinite loops pretty quickly and shows an error message.  
+
+Looks like useEffect runs it's code before the state is changed.  Only if one of it's dependancies are tied to the state.  They always are.  
+
+I think useSelector is a Redux defined hook.  
+
+Research the delete fetch.  Needs to delete a combo and simultaneously add it's properties to the values from the input form, then update the 
+state with the new persons array. 
+
+Wednesday, Mar 27, 2024
+
+Try to get the repeat error working again.  Also, get the post block to updated the state.  The person edit will be an issue as well.  
+
+It's got to stop the post if there is a repeat.  Might want to put addPerson in the useEffect so it won't add to state if there is a post error.  
+
+Needs to stop post if there is a repeat, post to the server, then add to the state if there is no error in the post.  May want to put post block in 
+App.js.  Still wondering about consolidating all this in App.js.  Could make custom hooks for post and fetch.  
+
+Thursday, Mar 28, 2024
+
+Could pass the persons down from the state.  Then it would have to pass back up.  Probably better just to get the form values on tap and 
+get the post to work at the top.  Could either make the posting subcompoents, or make the routing a component to pass down to the routing.
+For now, I'll just move the post to App.js
+
+If the functions are pure, rendering everything twice should not change anything the second time.  
+
+There's got to be a way to consolidate all this.  
+
+"Name has been added!" message?
+
+Now the immediate state variable is assigned numbers.  If the page is remounted, the name, shortname, and email are retreived from the database,
+and the combination assigned by the Person function is not shown.  
+
+The next step should either be to make edits for names, which may need another useEffect block.  Or to get the combos from json to be attached to 
+each name.  Wondering if a custom hook can handle more than one fetch request.  Custom hooks would consolodate the page anyway.  
+
+Seems like the blocks are iterated twice, before and after the fetch request is done.  The post block iterates four times.  Figuring out how to
+do with strict mode on is paying off here.  

@@ -14,6 +14,9 @@ import useFetch from "./app//logical/useFetch"
 function App() {
 
 
+
+  const [isPending, setIsPending] = useState(true);
+  const [errorPass, setError] = useState(null);
   // Any time it mounts, it should run this block a few times.  Multiple fetch calls will not be a problem.
   useEffect(() => {
     console.log('testThis')
@@ -27,15 +30,17 @@ function App() {
             error.response = response;
             throw error;
         }
-    },
-    error => {
-        const errMess = new Error(error.message);
-        throw errMess;
     }
     )
-        .then(response => response.json())
-        .then(persons => addPerson(persons))
-        .catch(error => console.log(error.message))
+    .then(response => response.json())
+    .then(persons => {
+          setIsPending(false)
+          modPersons(persons)
+        })
+        .catch(error => {
+          setIsPending(false)
+          setError(true)
+        })
   }, []);
 
   // Pulled this from nucampsite action creators
@@ -44,8 +49,12 @@ function App() {
   // It's doing the get request.  Can't get the data into local state.
   //Update the state every time it loads?
 
-  const [persons, addPerson] = useState(personsHard)
+  const [persons, modPersons] = useState(null)
   const [isError, changeError] = useState(false)
+
+  const [bodySkip, toggleSkip] = useState(false)
+  const [bodyEntry, toggleEntry] = useState({name: 'NameGame'})
+  const [runPost, togglePost] = useState(false)
 
   // addPerson(personsDB) Infinite loop.
   // If this fetch can work, the state will be updated when names are added to database.  No need to pass props from InputForm.  
@@ -54,6 +63,8 @@ function App() {
   // I think state variables are local to component unless passed as props.
 
   const updateState = (vals) => {  
+
+    console.log(vals)
 
     changeError(false)
     
@@ -72,14 +83,66 @@ function App() {
       }
     }
 
+    // Short Circuit
 
-    const personX = new Person(vals.name, vals.shortName, vals.email, persons.length)
-    addPerson(persons.concat(personX))
-    console.log(personX)
-    console.log(persons.length)
-    console.log(persons)
+    toggleEntry(vals)
+    toggleSkip(true)
+    togglePost(!runPost)
+    console.log(runPost)
+
+
+    // const personX = new Person(vals.name, vals.shortName, vals.email, persons.length)
+    // modPersons(persons.concat(personX))
+    // console.log(personX)
+    // console.log(persons.length)
+    // console.log(persons)
     
   }
+
+  useEffect(() => {
+
+
+    console.log('Asynch')
+    
+    if (bodySkip) {
+    fetch('http://localhost:8000/persons', {
+        method: 'POST',
+        headers: {
+           'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(
+           bodyEntry
+        )
+    }) 
+        .then(response => {
+        if (response.ok) {
+            return response;
+        } else {
+            const error = new Error(`Error ${response.status}: ${response.statusText}`);        
+            error.response = response;         
+            throw error;   
+        }
+    },
+    error => { throw error; }      
+)
+.then(response => response.json())
+.then(response => {
+    console.log(response)
+    console.log('stringthing')
+    const personX = new Person(response.name, response.shortName, response.email, persons.length)
+    modPersons(persons.concat(personX))
+    })
+.catch(error => {
+    console.log('post comment', error.message);
+    alert('Your comment could not be posted\nError: ' + error.message); 
+});
+}   
+
+    return () => {
+        console.log('UnmountAsynch')
+        toggleSkip(false)
+    }
+ }, [runPost] ); 
 
   // You can use js.  Just need to be particular when updating state variables.
 
@@ -106,17 +169,17 @@ function App() {
         return person;
       }
     });
-      addPerson(nextPersons);
+      modPersons(nextPersons);
     // React docs updating arrays
   }
 
-  //console.log(persons)  
+  // console.log(persons)  
 
   return (
     <div className=''>
       <Routes>
         <Route path='/' element={<Homepage />} />
-        <Route path='/list' element={<RenderList persons={persons} updateState={updateState} updatePerson={updatePerson} isError={isError} />} />
+        <Route path='/list' element={<RenderList persons={persons} updateState={updateState} updatePerson={updatePerson} isError={isError} isPending={isPending} errorPass={errorPass} />} />
         <Route path='/boxes' element={<Boxes persons={persons} />} />
       </Routes> 
     </div>
