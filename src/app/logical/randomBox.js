@@ -89,6 +89,15 @@ export class Person {
     }
 }
 
+export class Person2 {
+    constructor(name, shortName, email, id) {
+        this.id = id
+        this.name = name;
+        this.shortName = shortName;
+        this.email = email;
+    }
+}
+
 
 // this.afc = afc.splice(Math.floor(Math.random()*afc.length),1)[0];
 // this.nfc = nfc.splice(Math.floor(Math.random()*nfc.length),1)[0];

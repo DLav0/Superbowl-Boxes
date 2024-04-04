@@ -100,6 +100,7 @@ const InputForm = (props) => {
      }, [runPost] ); 
 
      // Just leave the useEffect here uncommented.  As long as the handleSubmit does not call it, it won't have any effect.  
+     // This could be the reason for the double Asynch Unmount Asynch console logs.
 
      // the fetch promise needs two parts to consume.  I guess it's two callback functions in .then()
      // Get the useEffect block to run only when runPost is changed.  

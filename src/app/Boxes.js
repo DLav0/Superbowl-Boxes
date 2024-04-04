@@ -31,27 +31,41 @@ const Boxes = (props) => {
     lockHover(false)
   }
 
-  return (
-    <>
-    <Link to={'/list'}>
-    <p>To List Page</p>
-    </Link> 
-    <div className='containter '>
-      <div className='row'>
-        <div className='col-md-8'>
-           <BoxesTable persons={props.persons} hoverPerson={hoverPerson} lockPerson={lockPerson}/>
-        </div>
-        <div className='col-md-4'>
-          <PersonCardNM person={personDisp} />
-          <UnfreezeButton unLock={unLock} isLocked={isLocked} />
+
+  if (props.isPending){
+    return (
+        <h1 className="loading">THE PAGE IS LOADING</h1>
+    )
+  }
+
+  if (props.errorPass){
+      return (
+          <h1 className="loading">There is an error.</h1>
+      )
+  }
+
+  if (props.persons) {
+
+    return (
+      <>
+      <Link to={'/list'}>
+      <p>To List Page</p>
+      </Link> 
+      <div className='containter '>
+        <div className='row'>
+          <div className='col-md-8'>
+            <BoxesTable persons={props.persons} hoverPerson={hoverPerson} lockPerson={lockPerson}/>
+          </div>
+          <div className='col-md-4'>
+            <PersonCardNM person={personDisp} />
+            <UnfreezeButton unLock={unLock} isLocked={isLocked} />
+          </div>
         </div>
       </div>
-    </div>
-    
-    </>
-  )
-  
-
+      
+      </>
+    )
+  }
 }
 
 

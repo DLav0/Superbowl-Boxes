@@ -677,3 +677,43 @@ each name.  Wondering if a custom hook can handle more than one fetch request.  
 
 Seems like the blocks are iterated twice, before and after the fetch request is done.  The post block iterates four times.  Figuring out how to
 do with strict mode on is paying off here.  
+
+May consider adapting this to React Native at some point.  Ideally, people could look up anyone's numbers on their phone.  Need to figure out 
+how to save specific pools first.  Seems way down the line.  
+
+Monday, April 1, 2024
+
+Need to get random combos in database to be linked to names being input into the form.  Can the combos be an array of arrays?  
+
+Refreshing boxes page is usually a problem.  It may have something to do with the persons objects without afc/nfc numbers.  No, that's not it.
+Added conditional rendering to Boxes component.  It now will show a loading screen while the fetch request is made.  
+
+Not sure where to start with deleting the combos objects.  Take a look at delete request and what it does with the deleted object.  Needs to delete
+a random combo object and add its number values to the input values.  It makes sense to use similar logic, just with the db instead of just hard 
+coded arrays.  
+
+Tuesday, April 2, 2024
+
+https://stackoverflow.com/questions/40284338/javascript-fetch-delete-and-put-requests
+
+Not sure if deleting an object with fetch returns the object.  Otherwise, I'd need to fetch the desired object, then delete it.  
+The update will come into play later.  For now, figure if delete will return the object being deleted.  
+
+Wed, Apr 3, 2024
+
+Looks like the delete does not return anything.  I'll need to fetch, then combine inputs, post, update local state, delete.
+Maybe change the order of these things.  Probably want to delete if all the other transactions go correctly.  Even undo the
+transaction if the delete does not go through.  Kind of a situation where it might kind of work, but will be problematic in certain
+instances.  
+
+i think I got the json-server thing worked out.  
+
+Thurs, April 4, 2024
+
+Make the combo combine with the input without deleting it.  I got the personCombo to be created but having difficulty posting the result.
+
+Could consider converting this to the await asynch syntax.  Using .then chain methods now.  
+
+Needs to define the personCombo with the correct id to be correcly added to persons in database.  Getting an error currently.
+
+Could definitely tidy up with the indentations.  

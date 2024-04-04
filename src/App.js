@@ -1,4 +1,4 @@
-import { personsHard, Person, combos } from "./app/logical/randomBox"
+import { personsHard, Person, combos, Person2 } from "./app/logical/randomBox"
 import { useState, useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
 import RenderList from './app/RenderList'
@@ -8,7 +8,7 @@ import Homepage from './app/Homepage';
 import Boxes from "./app/Boxes";
 import useFetch from "./app//logical/useFetch"
 
-//json-server --watch db.json --port 8000
+//json-server --watch db.json --port 8000 -d 1000
 //The app should work if the server is down.  
 
 function App() {
@@ -46,8 +46,8 @@ function App() {
   // Pulled this from nucampsite action creators
   // Ditch useFetch?
 
-  // It's doing the get request.  Can't get the data into local state.
-  //Update the state every time it loads?
+  // It's doing the get request.  
+  // Updates the state every time it loads
 
   const [persons, modPersons] = useState(null)
   const [isError, changeError] = useState(false)
@@ -105,13 +105,42 @@ function App() {
     console.log('Asynch')
     
     if (bodySkip) {
-    fetch('http://localhost:8000/persons', {
+
+      fetch('http://localhost:8000/combos/1')
+      .then(response => {
+          if (response.ok) {
+              return response;
+          } else {
+              const error = new Error(`Error ${response.status}: ${response.statusText}`);
+              error.response = response;
+              throw error;
+          }
+      }
+      )
+      .then(response => response.json())
+      .then(combo => {
+          const personCombo = {...bodyEntry, ...combo}
+          return personCombo
+          // Post this using POST method.  Need to return this personCombo?
+          })
+      .then(personCombo => {
+        console.log(personCombo)
+        return personCombo
+        }
+      )
+      // redundant .then() here.  Change later.  
+      // .catch(error => {
+      //   console.log(error)
+      // })
+      // Issue with duplicate id being posted to persons.
+      .then(personCombo =>
+      fetch('http://localhost:8000/persons', {
         method: 'POST',
         headers: {
-           'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(
-           bodyEntry
+          personCombo
         )
     }) 
         .then(response => {
@@ -124,25 +153,82 @@ function App() {
         }
     },
     error => { throw error; }      
-)
-.then(response => response.json())
-.then(response => {
+    )
+  .then(response => response.json())
+  .then(response => {
     console.log(response)
     console.log('stringthing')
-    const personX = new Person(response.name, response.shortName, response.email, persons.length)
-    modPersons(persons.concat(personX))
+    const personY = personCombo
+    modPersons(persons.concat(personY))
     })
-.catch(error => {
+  .catch(error => {
     console.log('post comment', error.message);
     alert('Your comment could not be posted\nError: ' + error.message); 
-});
-}   
+  })
+  )
+      
 
-    return () => {
-        console.log('UnmountAsynch')
-        toggleSkip(false)
+
+
+      if (false) {
+      
+      fetch('http://localhost:8000/combos/1', {
+        method: 'DELETE',
+      })
+      .then(res => {
+        return res.json()
+      }) 
+      .then(data => console.log(data))
+
     }
- }, [runPost] ); 
+
+      // Do I need an error and catch here?  Check for the log after the Asynch.
+      // Looks like the delete does not return the object being deleted.
+      // I just disabled the delete for now
+      // I prefer the if (false) blocks to the comment syntax.  Just disabling blocks of code I might use later.
+
+      if (false) {
+
+      fetch('http://localhost:8000/persons', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(
+            bodyEntry
+          )
+      }) 
+          .then(response => {
+          if (response.ok) {
+              return response;
+          } else {
+              const error = new Error(`Error ${response.status}: ${response.statusText}`);        
+              error.response = response;         
+              throw error;   
+          }
+      },
+      error => { throw error; }      
+      )
+    .then(response => response.json())
+    .then(response => {
+      console.log(response)
+      console.log('stringthing')
+      const personX = new Person2(response.name, response.shortName, response.email, persons.length)
+      modPersons(persons.concat(personX))
+      })
+    .catch(error => {
+      console.log('post comment', error.message);
+      alert('Your comment could not be posted\nError: ' + error.message); 
+    });
+  }
+  
+  }
+
+  return () => {
+    console.log('UnmountAsynch')
+    toggleSkip(false)
+    }
+  }, [runPost] ); 
 
   // You can use js.  Just need to be particular when updating state variables.
 
@@ -180,7 +266,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Homepage />} />
         <Route path='/list' element={<RenderList persons={persons} updateState={updateState} updatePerson={updatePerson} isError={isError} isPending={isPending} errorPass={errorPass} />} />
-        <Route path='/boxes' element={<Boxes persons={persons} />} />
+        <Route path='/boxes' element={<Boxes persons={persons} isError={isError} isPending={isPending} errorPass={errorPass} />} />
       </Routes> 
     </div>
   );
@@ -190,4 +276,4 @@ function App() {
 export default App;
 
 // Don't try to mutate a state variable 
-
+// Local state clears whenever updated.  Pass isPending and errorPass to boxes

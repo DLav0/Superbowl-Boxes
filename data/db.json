@@ -73,22 +73,16 @@
       "nfc": 4
     },
     {
-      "name": "Tarra Swillwigger",
-      "shortName": "Taps",
-      "email": "needto@gmail.com",
+      "name": "No shit",
+      "shortName": "Swillwigger",
+      "email": "this@that.com",
       "id": 8
     },
     {
-      "name": "Another Name",
-      "shortName": "Short",
-      "email": "gmail@gmail.com",
+      "name": "No shit2",
+      "shortName": "Swillwigger2",
+      "email": "this@that.com2",
       "id": 9
-    },
-    {
-      "name": "Try this",
-      "shortName": "Again",
-      "email": "isinot@notis.com",
-      "id": 10
     }
   ],
   "combos": [
