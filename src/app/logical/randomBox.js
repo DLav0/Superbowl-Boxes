@@ -75,6 +75,7 @@ const personDefault = {
     return combos.splice(Math.floor(Math.random()*combos.length),1)[0];
 }
 
+
 export class Person {
     constructor(name, shortName, email, id) {
         this.id = id

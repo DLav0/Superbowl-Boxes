@@ -73,25 +73,16 @@
       "nfc": 4
     },
     {
-      "name": "No shit",
-      "shortName": "Swillwigger",
-      "email": "this@that.com",
-      "id": 8
-    },
-    {
-      "name": "No shit2",
-      "shortName": "Swillwigger2",
-      "email": "this@that.com2",
-      "id": 9
+      "id": 8,
+      "name": "Random Combo",
+      "shortName": "DB",
+      "email": "@combo",
+      "both": "",
+      "afc": 4,
+      "nfc": 7
     }
   ],
   "combos": [
-    {
-      "id": 0,
-      "both": "",
-      "afc": 0,
-      "nfc": 0
-    },
     {
       "id": 1,
       "both": "",
@@ -133,12 +124,6 @@
       "both": "",
       "afc": 0,
       "nfc": 7
-    },
-    {
-      "id": 8,
-      "both": "",
-      "afc": 0,
-      "nfc": 8
     },
     {
       "id": 9,
@@ -199,12 +184,6 @@
       "both": "",
       "afc": 1,
       "nfc": 8
-    },
-    {
-      "id": 19,
-      "both": "",
-      "afc": 1,
-      "nfc": 9
     },
     {
       "id": 20,
@@ -327,12 +306,6 @@
       "nfc": 9
     },
     {
-      "id": 40,
-      "both": "",
-      "afc": 4,
-      "nfc": 0
-    },
-    {
       "id": 41,
       "both": "",
       "afc": 4,
@@ -351,12 +324,6 @@
       "nfc": 3
     },
     {
-      "id": 44,
-      "both": "",
-      "afc": 4,
-      "nfc": 4
-    },
-    {
       "id": 45,
       "both": "",
       "afc": 4,
@@ -367,12 +334,6 @@
       "both": "",
       "afc": 4,
       "nfc": 6
-    },
-    {
-      "id": 47,
-      "both": "",
-      "afc": 4,
-      "nfc": 7
     },
     {
       "id": 48,
@@ -393,28 +354,10 @@
       "nfc": 0
     },
     {
-      "id": 51,
-      "both": "",
-      "afc": 5,
-      "nfc": 1
-    },
-    {
       "id": 52,
       "both": "",
       "afc": 5,
       "nfc": 2
-    },
-    {
-      "id": 53,
-      "both": "",
-      "afc": 5,
-      "nfc": 3
-    },
-    {
-      "id": 54,
-      "both": "",
-      "afc": 5,
-      "nfc": 4
     },
     {
       "id": 55,

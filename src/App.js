@@ -8,8 +8,8 @@ import Homepage from './app/Homepage';
 import Boxes from "./app/Boxes";
 import useFetch from "./app//logical/useFetch"
 
-//json-server --watch db.json --port 8000 -d 1000
-//The app should work if the server is down.  
+// json-server --watch db.json --port 8000 -d 1000
+// The app should work if the server is down.  
 
 function App() {
 
@@ -36,11 +36,15 @@ function App() {
     .then(persons => {
           setIsPending(false)
           modPersons(persons)
+          newNumCombos(100-persons.length)
+          
+
         })
         .catch(error => {
           setIsPending(false)
           setError(true)
         })
+          
   }, []);
 
   // Pulled this from nucampsite action creators
@@ -55,6 +59,7 @@ function App() {
   const [bodySkip, toggleSkip] = useState(false)
   const [bodyEntry, toggleEntry] = useState({name: 'NameGame'})
   const [runPost, togglePost] = useState(false)
+  const [numCombos, newNumCombos] = useState(14)
 
   // addPerson(personsDB) Infinite loop.
   // If this fetch can work, the state will be updated when names are added to database.  No need to pass props from InputForm.  
@@ -104,9 +109,15 @@ function App() {
 
     console.log('Asynch')
     
+    
     if (bodySkip) {
 
-      fetch('http://localhost:8000/combos/1')
+      console.log(numCombos)
+
+      let comboNumIn = Math.floor(Math.random()*numCombos)
+
+      fetch('http://localhost:8000/combos/' + 41)  
+      // Is this based on the combo id or the index in the array?
       .then(response => {
           if (response.ok) {
               return response;
@@ -117,12 +128,23 @@ function App() {
           }
       }
       )
+      .catch(error => {
+        console.log('If I put the catch here, it will show error message and stop the code', error.message); 
+      })
       .then(response => response.json())
       .then(combo => {
-          const personCombo = {...bodyEntry, ...combo}
+          delete combo.id
+          // Could also delete "both" at this point.
+          const personX = new Person2(bodyEntry.name, bodyEntry.shortName, bodyEntry.email, persons.length)
+          const personCombo = {...personX, ...combo}
           return personCombo
           // Post this using POST method.  Need to return this personCombo?
+          // Make id out of combo
           })
+      // .catch(error => {
+      //   console.log('with multiple catch in chain, the whole chain will run after messages are shown', error.message);
+      //   alert('Your comment could not be posted\nError: ' + error.message); 
+      // })
       .then(personCombo => {
         console.log(personCombo)
         return personCombo
@@ -133,6 +155,7 @@ function App() {
       //   console.log(error)
       // })
       // Issue with duplicate id being posted to persons.
+      // Needs {} here?
       .then(personCombo =>
       fetch('http://localhost:8000/persons', {
         method: 'POST',
@@ -154,18 +177,32 @@ function App() {
     },
     error => { throw error; }      
     )
+    // .catch(error => {
+    // console.log('This catch is immediately after the persons post fetch', error.message);
+    // })
   .then(response => response.json())
   .then(response => {
     console.log(response)
     console.log('stringthing')
     const personY = personCombo
     modPersons(persons.concat(personY))
+    newNumCombos(numCombos-1)
+    return comboNumIn
     })
+    .then(comboNumIn => {
+      console.log(comboNumIn)
+      console.log(numCombos)
+      console.log('completed transaction')
+    }) 
+    // The state may be updated after the useEffect has run?
+    // needs to use ComboNumIn.  May want to do this at another point.  Feel like I want the delete to be last.  
   .catch(error => {
-    console.log('post comment', error.message);
-    alert('Your comment could not be posted\nError: ' + error.message); 
+    console.log('This catch is at the very end of the chain', error.message);
+    alert('End Chain: ' + error.message); 
   })
   )
+
+  // Needs multiple catch for multiple fetch requests?  May want to test this before adding delete request.  
       
 
 

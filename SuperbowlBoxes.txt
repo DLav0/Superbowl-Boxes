@@ -717,3 +717,120 @@ Could consider converting this to the await asynch syntax.  Using .then chain me
 Needs to define the personCombo with the correct id to be correcly added to persons in database.  Getting an error currently.
 
 Could definitely tidy up with the indentations.  
+
+Wed, Apr 10, 2024
+
+Fixed the id problem by removing the id from the combo being fetched.  The id is then defined as persons.lenght and uses spread 
+syntax to merge the two objects.  
+
+Needs to grab a random combo object, then delete it once the post is made.  Problem is I won't get the js to determine the lenght of the
+combos array.  
+
+Thurs, Apr 11, 2024
+
+Trying to get the number of combos to feed into a random number generator.  This will then go into the post URL when adding a new person.
+Needs to now delete the combo that was applied.  See what happens if there is an overwrite.
+
+Refresh updates the persons length given to post request.  Randomize first, then delete combo after.
+
+Figure a way to restore the db when server is shut off.  Want to get to a state where a user can easily understand how the site works.
+In this case, they would pull my database, and the new database would be on client computer?  In this case, it would be a better demonstration
+to let them reset the db if they want to.  Is there a way to restore the database with some kind of command?
+
+Persons length keeps changing in db.  Every new input now posts to the next box.  
+
+Random works.  Get delete to work.  Then try to get edit to work.  This could run into some confusion.  Can not delete a combo without having
+a person on the list with the combo attatched.  Initial reaction is to delete the combos for the default people.  If you change a person,
+you need to adjust the combos as well.  Clearing persons in db for now.  Agian, some kind of reset would be nice.  
+
+I'm going to create a default json file to copy and paste if the active one gets out of wack.  defaultDB has all 100 combo objects and 10
+persons.  Person 9 has no numbers.  Person 10 was generated using the random input.
+
+Is the comboNumIn off by one?  No, it will input 0 to 99, which acccounts for 100 combinations.  0 is the index for the first combo.  
+Probably want to make sure the errors are ok.  
+
+Need to add an edit and delete function on the app rather than manually deleting from the json file.  Where to add delete button? In
+modal or with a button next to the person in the list?  Add list feature to boxes?  
+
+Figure out what to do about shortnames.  6 digit limit on first and second word, but there must be a space between the two.  Not sure how to 
+do this.  Maybe regexp?  Could just make two input feilds for each word, though this may be confusing to the user.  
+"The shortname can be either one or two words with a six digit limit and a space in between."
+
+It may be better overall to have the user input all 100 people and assign randomly at the end.  Less likely to be able to cheat.  
+
+Get the delete working, then make commit "Save State"
+
+Try to clean up App.js, maybe create some custom hooks.  Secondary.  
+
+Friday, Apr 13, 2024
+
+Would be best to make a delete option that returns the combo to the db.  I'll have to be careful.  How would the app be able to insert the
+combos in the correct locations.  Just add combo to the end of the array?  Not really sure how JSON server operates.  
+
+Not sure if I should revert to determining the lenght of the combos based on the combos lenght.  Not sure if 100-persons.length will be the
+best way to input the correct number of combos to the random function.  In theory, if one combo is deleted for every person defined, these 
+should be the same thing.  
+
+I reestablished the default database by removing two persons and deleting the combos in combos array for the 8 remaining.  Then I added a 
+nother person, which worked correctly, and delteted that combo as well.  I may need to be meticulous about this when writting and testing.  
+
+Monday, Apr 15, 2024
+
+Need to delete the combo object being applied to personIn.  
+
+Tuesday, Apr 16, 2024
+
+May need to see if nested fetch requests need a separate catch.  I'm pretty sure I have to chain them to get the effect I'm looking for.  
+
+I'm realizing there will be a problem if a combo is deleted.  The id numbers will be the same, even though the length has changed.  Not 
+sure how the server will handle this.  Does the random grab based on ID?  Is there a way to get server to reorder all the id's every time
+a combo is used?  Maybe a better way would be to.  The order doesn't matter, but the mix up of combo id numbers may be an issue.  May want 
+to test this before adding delete request.  
+
+Could add a date and time of when the person was added.  This seems like more data would improve the app.  
+
+I'm going to need to either find a way to re order all the combo id's based on index, or find a way to input the index into the fetch.
+Right now, it grabs based on id.  This technically will not cause an error, though i'm not sure what would happen if the random mumber 
+is a combo that has been deleted.  Should the combos be part of the local state?  Not sure if that would help.  My impression is that
+the fetch request is done, then the state is updated if there are no errors.  
+
+Needs a lot of work just to get basic functionality with just one pool database.  
+
+Wed, Apr 17, 2024
+
+Check to verify that the combo fetched has an id attatched to the url in the request.  This is a problem because the random number is
+based on the length of the persons array, though the id's in the combos array do not reorder.  I'm thinking I either need to find a way 
+to select a combo object by index or reorder the ids of the combos array after every grab.  This could be an issue when deleting a person,
+which is a feature I would like to add.  
+
+It could either attempt to grab a combo that is already used.  It also will not select id numbers greater than the lenght of the array.
+All of these id numbers higher than the length will be ommitted.  
+
+May need to add a catch for each fetch request.  When trying to pull combo 40, which has already been removed (manually), an error message 
+occurs.  The console logs an error at the combo fetch request.  Also logs at the else block for the fetch promise.  I may try adding a catch 
+after this request.  See if it logs the correct error and if the app still works.  Can I chain a .then after the catch for this promise?
+
+Found another problem.  Using 40 as url specification, the code created a persons object with only an id.  
+
+The post for an un removed combo works still with the catch in place.  Try to fugure out stopping the post in the case of an error.
+Does not make empty object in persons without the catch applied.  See if I can correct this now.  I guess 'throw error' diverts the 
+code to the catch.  
+
+Not really doing what I want it to.  The catch will show any error messages, but will continue through the rest of the promise chain.  
+I should probably try to sort this out now.  Render list is now confused because it's getting an object with only an id value.
+Need to make a new function after each catch?  With just one catch, right after the response, it returns an error and stops the code.
+
+It's frusturating because these all need to be sequential, but it would be good to have a catch after every fetch request.  
+
+Errors seem better, but may need more work.  Now at least it will cut the code short if the fetch attempts to take a combo object
+that doesn't exist.  It seems most important to have a catch for every request to the server.  This appears to work.  
+
+Error appears to be from Javascript.
+
+The fetched combo is based on the object id value, not position in array.  Either find a way to grab based on array index or reorder
+the id after every fetch.  
+
+Doesn't post anything to the server until after the second fetch.  I beleive errors will short circuit the code before any post is committed
+or changing the state.  This is all done in the post request.  I think one catch per fetch request seems to work.  
+
+Making git commit: "server errors"

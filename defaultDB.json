@@ -1,0 +1,693 @@
+{
+    "persons": [
+      {
+        "id": 0,
+        "name": "Daniel Lavery",
+        "shortName": "Dan L.",
+        "email": "lavery0@yahoo.com",
+        "both": "",
+        "afc": 0,
+        "nfc": 0
+      },
+      {
+        "id": 1,
+        "name": "Bill Belicheck",
+        "shortName": "Billy",
+        "email": "randoEmail@deflate.com",
+        "both": "",
+        "afc": 4,
+        "nfc": 0
+      },
+      {
+        "id": 2,
+        "name": "OJ Simpson",
+        "shortName": "OJ",
+        "email": "didntdoit@snailmail.com",
+        "both": "",
+        "afc": 4,
+        "nfc": 4
+      },
+      {
+        "id": 3,
+        "name": "Sean Lavery",
+        "shortName": "Pop",
+        "email": "slavery@gmail.com",
+        "both": "",
+        "afc": 5,
+        "nfc": 1
+      },
+      {
+        "id": 4,
+        "name": "Out of Ideas",
+        "shortName": "Out",
+        "email": "tellmesomething@yahoo.com",
+        "both": "",
+        "afc": 5,
+        "nfc": 3
+      },
+      {
+        "id": 5,
+        "name": "Tommy Tutliger",
+        "shortName": "Squirl",
+        "email": "squirelwhirl@gmail.com",
+        "both": "",
+        "afc": 1,
+        "nfc": 9
+      },
+      {
+        "id": 6,
+        "name": "Tammy Tuglugger",
+        "shortName": "Beets",
+        "email": "tammy@gmail.com",
+        "both": "",
+        "afc": 0,
+        "nfc": 8
+      },
+      {
+        "id": 7,
+        "name": "Tommy Dickpicker",
+        "shortName": "Potatoes",
+        "email": "tillwill@gmail.com",
+        "both": "",
+        "afc": 5,
+        "nfc": 4
+      },
+      {
+        "name": "No shit",
+        "shortName": "Swillwigger",
+        "email": "this@that.com",
+        "id": 8
+      },
+      {
+        "id": 9,
+        "name": "Random Assignment",
+        "shortName": "Random",
+        "email": "@random.com",
+        "both": "",
+        "afc": 8,
+        "nfc": 7
+      }
+    ],
+    "combos": [
+      {
+        "id": 0,
+        "both": "",
+        "afc": 0,
+        "nfc": 0
+      },
+      {
+        "id": 1,
+        "both": "",
+        "afc": 0,
+        "nfc": 1
+      },
+      {
+        "id": 2,
+        "both": "",
+        "afc": 0,
+        "nfc": 2
+      },
+      {
+        "id": 3,
+        "both": "",
+        "afc": 0,
+        "nfc": 3
+      },
+      {
+        "id": 4,
+        "both": "",
+        "afc": 0,
+        "nfc": 4
+      },
+      {
+        "id": 5,
+        "both": "",
+        "afc": 0,
+        "nfc": 5
+      },
+      {
+        "id": 6,
+        "both": "",
+        "afc": 0,
+        "nfc": 6
+      },
+      {
+        "id": 7,
+        "both": "",
+        "afc": 0,
+        "nfc": 7
+      },
+      {
+        "id": 8,
+        "both": "",
+        "afc": 0,
+        "nfc": 8
+      },
+      {
+        "id": 9,
+        "both": "",
+        "afc": 0,
+        "nfc": 9
+      },
+      {
+        "id": 10,
+        "both": "",
+        "afc": 1,
+        "nfc": 0
+      },
+      {
+        "id": 11,
+        "both": "",
+        "afc": 1,
+        "nfc": 1
+      },
+      {
+        "id": 12,
+        "both": "",
+        "afc": 1,
+        "nfc": 2
+      },
+      {
+        "id": 13,
+        "both": "",
+        "afc": 1,
+        "nfc": 3
+      },
+      {
+        "id": 14,
+        "both": "",
+        "afc": 1,
+        "nfc": 4
+      },
+      {
+        "id": 15,
+        "both": "",
+        "afc": 1,
+        "nfc": 5
+      },
+      {
+        "id": 16,
+        "both": "",
+        "afc": 1,
+        "nfc": 6
+      },
+      {
+        "id": 17,
+        "both": "",
+        "afc": 1,
+        "nfc": 7
+      },
+      {
+        "id": 18,
+        "both": "",
+        "afc": 1,
+        "nfc": 8
+      },
+      {
+        "id": 19,
+        "both": "",
+        "afc": 1,
+        "nfc": 9
+      },
+      {
+        "id": 20,
+        "both": "",
+        "afc": 2,
+        "nfc": 0
+      },
+      {
+        "id": 21,
+        "both": "",
+        "afc": 2,
+        "nfc": 1
+      },
+      {
+        "id": 22,
+        "both": "",
+        "afc": 2,
+        "nfc": 2
+      },
+      {
+        "id": 23,
+        "both": "",
+        "afc": 2,
+        "nfc": 3
+      },
+      {
+        "id": 24,
+        "both": "",
+        "afc": 2,
+        "nfc": 4
+      },
+      {
+        "id": 25,
+        "both": "",
+        "afc": 2,
+        "nfc": 5
+      },
+      {
+        "id": 26,
+        "both": "",
+        "afc": 2,
+        "nfc": 6
+      },
+      {
+        "id": 27,
+        "both": "",
+        "afc": 2,
+        "nfc": 7
+      },
+      {
+        "id": 28,
+        "both": "",
+        "afc": 2,
+        "nfc": 8
+      },
+      {
+        "id": 29,
+        "both": "",
+        "afc": 2,
+        "nfc": 9
+      },
+      {
+        "id": 30,
+        "both": "",
+        "afc": 3,
+        "nfc": 0
+      },
+      {
+        "id": 31,
+        "both": "",
+        "afc": 3,
+        "nfc": 1
+      },
+      {
+        "id": 32,
+        "both": "",
+        "afc": 3,
+        "nfc": 2
+      },
+      {
+        "id": 33,
+        "both": "",
+        "afc": 3,
+        "nfc": 3
+      },
+      {
+        "id": 34,
+        "both": "",
+        "afc": 3,
+        "nfc": 4
+      },
+      {
+        "id": 35,
+        "both": "",
+        "afc": 3,
+        "nfc": 5
+      },
+      {
+        "id": 36,
+        "both": "",
+        "afc": 3,
+        "nfc": 6
+      },
+      {
+        "id": 37,
+        "both": "",
+        "afc": 3,
+        "nfc": 7
+      },
+      {
+        "id": 38,
+        "both": "",
+        "afc": 3,
+        "nfc": 8
+      },
+      {
+        "id": 39,
+        "both": "",
+        "afc": 3,
+        "nfc": 9
+      },
+      {
+        "id": 40,
+        "both": "",
+        "afc": 4,
+        "nfc": 0
+      },
+      {
+        "id": 41,
+        "both": "",
+        "afc": 4,
+        "nfc": 1
+      },
+      {
+        "id": 42,
+        "both": "",
+        "afc": 4,
+        "nfc": 2
+      },
+      {
+        "id": 43,
+        "both": "",
+        "afc": 4,
+        "nfc": 3
+      },
+      {
+        "id": 44,
+        "both": "",
+        "afc": 4,
+        "nfc": 4
+      },
+      {
+        "id": 45,
+        "both": "",
+        "afc": 4,
+        "nfc": 5
+      },
+      {
+        "id": 46,
+        "both": "",
+        "afc": 4,
+        "nfc": 6
+      },
+      {
+        "id": 47,
+        "both": "",
+        "afc": 4,
+        "nfc": 7
+      },
+      {
+        "id": 48,
+        "both": "",
+        "afc": 4,
+        "nfc": 8
+      },
+      {
+        "id": 49,
+        "both": "",
+        "afc": 4,
+        "nfc": 9
+      },
+      {
+        "id": 50,
+        "both": "",
+        "afc": 5,
+        "nfc": 0
+      },
+      {
+        "id": 51,
+        "both": "",
+        "afc": 5,
+        "nfc": 1
+      },
+      {
+        "id": 52,
+        "both": "",
+        "afc": 5,
+        "nfc": 2
+      },
+      {
+        "id": 53,
+        "both": "",
+        "afc": 5,
+        "nfc": 3
+      },
+      {
+        "id": 54,
+        "both": "",
+        "afc": 5,
+        "nfc": 4
+      },
+      {
+        "id": 55,
+        "both": "",
+        "afc": 5,
+        "nfc": 5
+      },
+      {
+        "id": 56,
+        "both": "",
+        "afc": 5,
+        "nfc": 6
+      },
+      {
+        "id": 57,
+        "both": "",
+        "afc": 5,
+        "nfc": 7
+      },
+      {
+        "id": 58,
+        "both": "",
+        "afc": 5,
+        "nfc": 8
+      },
+      {
+        "id": 59,
+        "both": "",
+        "afc": 5,
+        "nfc": 9
+      },
+      {
+        "id": 60,
+        "both": "",
+        "afc": 6,
+        "nfc": 0
+      },
+      {
+        "id": 61,
+        "both": "",
+        "afc": 6,
+        "nfc": 1
+      },
+      {
+        "id": 62,
+        "both": "",
+        "afc": 6,
+        "nfc": 2
+      },
+      {
+        "id": 63,
+        "both": "",
+        "afc": 6,
+        "nfc": 3
+      },
+      {
+        "id": 64,
+        "both": "",
+        "afc": 6,
+        "nfc": 4
+      },
+      {
+        "id": 65,
+        "both": "",
+        "afc": 6,
+        "nfc": 5
+      },
+      {
+        "id": 66,
+        "both": "",
+        "afc": 6,
+        "nfc": 6
+      },
+      {
+        "id": 67,
+        "both": "",
+        "afc": 6,
+        "nfc": 7
+      },
+      {
+        "id": 68,
+        "both": "",
+        "afc": 6,
+        "nfc": 8
+      },
+      {
+        "id": 69,
+        "both": "",
+        "afc": 6,
+        "nfc": 9
+      },
+      {
+        "id": 70,
+        "both": "",
+        "afc": 7,
+        "nfc": 0
+      },
+      {
+        "id": 71,
+        "both": "",
+        "afc": 7,
+        "nfc": 1
+      },
+      {
+        "id": 72,
+        "both": "",
+        "afc": 7,
+        "nfc": 2
+      },
+      {
+        "id": 73,
+        "both": "",
+        "afc": 7,
+        "nfc": 3
+      },
+      {
+        "id": 74,
+        "both": "",
+        "afc": 7,
+        "nfc": 4
+      },
+      {
+        "id": 75,
+        "both": "",
+        "afc": 7,
+        "nfc": 5
+      },
+      {
+        "id": 76,
+        "both": "",
+        "afc": 7,
+        "nfc": 6
+      },
+      {
+        "id": 77,
+        "both": "",
+        "afc": 7,
+        "nfc": 7
+      },
+      {
+        "id": 78,
+        "both": "",
+        "afc": 7,
+        "nfc": 8
+      },
+      {
+        "id": 79,
+        "both": "",
+        "afc": 7,
+        "nfc": 9
+      },
+      {
+        "id": 80,
+        "both": "",
+        "afc": 8,
+        "nfc": 0
+      },
+      {
+        "id": 81,
+        "both": "",
+        "afc": 8,
+        "nfc": 1
+      },
+      {
+        "id": 82,
+        "both": "",
+        "afc": 8,
+        "nfc": 2
+      },
+      {
+        "id": 83,
+        "both": "",
+        "afc": 8,
+        "nfc": 3
+      },
+      {
+        "id": 84,
+        "both": "",
+        "afc": 8,
+        "nfc": 4
+      },
+      {
+        "id": 85,
+        "both": "",
+        "afc": 8,
+        "nfc": 5
+      },
+      {
+        "id": 86,
+        "both": "",
+        "afc": 8,
+        "nfc": 6
+      },
+      {
+        "id": 87,
+        "both": "",
+        "afc": 8,
+        "nfc": 7
+      },
+      {
+        "id": 88,
+        "both": "",
+        "afc": 8,
+        "nfc": 8
+      },
+      {
+        "id": 89,
+        "both": "",
+        "afc": 8,
+        "nfc": 9
+      },
+      {
+        "id": 90,
+        "both": "",
+        "afc": 9,
+        "nfc": 0
+      },
+      {
+        "id": 91,
+        "both": "",
+        "afc": 9,
+        "nfc": 1
+      },
+      {
+        "id": 92,
+        "both": "",
+        "afc": 9,
+        "nfc": 2
+      },
+      {
+        "id": 93,
+        "both": "",
+        "afc": 9,
+        "nfc": 3
+      },
+      {
+        "id": 94,
+        "both": "",
+        "afc": 9,
+        "nfc": 4
+      },
+      {
+        "id": 95,
+        "both": "",
+        "afc": 9,
+        "nfc": 5
+      },
+      {
+        "id": 96,
+        "both": "",
+        "afc": 9,
+        "nfc": 6
+      },
+      {
+        "id": 97,
+        "both": "",
+        "afc": 9,
+        "nfc": 7
+      },
+      {
+        "id": 98,
+        "both": "",
+        "afc": 9,
+        "nfc": 8
+      },
+      {
+        "id": 99,
+        "both": "",
+        "afc": 9,
+        "nfc": 9
+      }
+    ]
+  }
