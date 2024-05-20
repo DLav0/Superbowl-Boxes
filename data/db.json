@@ -7,7 +7,8 @@
       "email": "lavery0@yahoo.com",
       "both": "",
       "afc": 0,
-      "nfc": 0
+      "nfc": 0,
+      "comboNum": 0
     },
     {
       "id": 1,
@@ -16,7 +17,8 @@
       "email": "randoEmail@deflate.com",
       "both": "",
       "afc": 4,
-      "nfc": 0
+      "nfc": 0,
+      "comboNum": 40
     },
     {
       "id": 2,
@@ -25,7 +27,8 @@
       "email": "didntdoit@snailmail.com",
       "both": "",
       "afc": 4,
-      "nfc": 4
+      "nfc": 4,
+      "comboNum": 44
     },
     {
       "id": 3,
@@ -34,7 +37,8 @@
       "email": "slavery@gmail.com",
       "both": "",
       "afc": 5,
-      "nfc": 1
+      "nfc": 1,
+      "comboNum": 51
     },
     {
       "id": 4,
@@ -43,7 +47,8 @@
       "email": "tellmesomething@yahoo.com",
       "both": "",
       "afc": 5,
-      "nfc": 3
+      "nfc": 3,
+      "comboNum": 53
     },
     {
       "id": 5,
@@ -52,7 +57,8 @@
       "email": "squirelwhirl@gmail.com",
       "both": "",
       "afc": 1,
-      "nfc": 9
+      "nfc": 9,
+      "comboNum": 19
     },
     {
       "id": 6,
@@ -61,7 +67,8 @@
       "email": "tammy@gmail.com",
       "both": "",
       "afc": 0,
-      "nfc": 8
+      "nfc": 8,
+      "comboNum": 8
     },
     {
       "id": 7,
@@ -70,7 +77,8 @@
       "email": "tillwill@gmail.com",
       "both": "",
       "afc": 5,
-      "nfc": 4
+      "nfc": 4,
+      "comboNum": 54
     },
     {
       "id": 8,
@@ -79,7 +87,48 @@
       "email": "@combo",
       "both": "",
       "afc": 4,
-      "nfc": 7
+      "nfc": 7,
+      "comboNum": 47
+    },
+    {
+      "id": 9,
+      "name": "comboNum",
+      "shortName": "Num",
+      "email": "@Num",
+      "both": "",
+      "afc": 1,
+      "nfc": 7,
+      "comboNum": 17
+    },
+    {
+      "id": 10,
+      "name": "Double Check",
+      "shortName": "double",
+      "email": "@check",
+      "both": "",
+      "afc": 2,
+      "nfc": 9,
+      "comboNum": 29
+    },
+    {
+      "id": 11,
+      "name": "Double Check2",
+      "shortName": "double2",
+      "email": "@check2",
+      "both": "",
+      "afc": 5,
+      "nfc": 8,
+      "comboNum": 58
+    },
+    {
+      "id": 12,
+      "name": "Working Save",
+      "shortName": "Save",
+      "email": "@save",
+      "both": "",
+      "afc": 3,
+      "nfc": 0,
+      "comboNum": 30
     }
   ],
   "combos": [
@@ -174,12 +223,6 @@
       "nfc": 6
     },
     {
-      "id": 17,
-      "both": "",
-      "afc": 1,
-      "nfc": 7
-    },
-    {
       "id": 18,
       "both": "",
       "afc": 1,
@@ -238,18 +281,6 @@
       "both": "",
       "afc": 2,
       "nfc": 8
-    },
-    {
-      "id": 29,
-      "both": "",
-      "afc": 2,
-      "nfc": 9
-    },
-    {
-      "id": 30,
-      "both": "",
-      "afc": 3,
-      "nfc": 0
     },
     {
       "id": 31,
@@ -376,12 +407,6 @@
       "both": "",
       "afc": 5,
       "nfc": 7
-    },
-    {
-      "id": 58,
-      "both": "",
-      "afc": 5,
-      "nfc": 8
     },
     {
       "id": 59,

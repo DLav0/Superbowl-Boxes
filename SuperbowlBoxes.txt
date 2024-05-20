@@ -834,3 +834,163 @@ Doesn't post anything to the server until after the second fetch.  I beleive err
 or changing the state.  This is all done in the post request.  I think one catch per fetch request seems to work.  
 
 Making git commit: "server errors"
+
+Thursday, April 18, 2024
+
+Cleaned up some of the comments in App.js.
+
+Maybe it would be better to leave all the combos, but have some kind of mark value pair.  The splice used a delete, but that was reset every 
+time it was refreshed.  With the random I bet it would have to iterate 10,000 times to hit the last pair.  Could reevaluate the site to punch in 
+all the names and do a random assigment at the end.  just use whatever method to randomize the array.  I'm just not sure how to do this with the 
+server.  
+
+Honestly, it would probably make more sense to have the user enter all the names, be able to delete and edit as needed, then randomly assign the 
+combos at the end.  There are code blocks that will randomize the order of an array.  Right now I'm essentially recreating what I started with 
+with the database to save the work done.  This is important as all can not be lost with an accidental refresh.  
+
+Maybe consolidate App.js later.  Should switch to asynch await syntax?  Not sure how to figure out either re id ing the combos every time
+or fetching based on index.  Would this apply to any database or just json fictional server?
+
+Tues, April 23, 2024
+
+Trying to figure how to reorder the ids in the combos array in db.json.  May also research a fetch request that draws based on index.  
+
+I may be able to fetch the entire array, use a loop to reorder the ids, then post the updated array to the server.  This would need to be done
+after every persons post.  This issue with the ids may impact the delete and edit function.  There is probably a way to re id the objects in the
+arrays.  This may be the best option.  Reorder on every render and every time a change is made to the state.  
+
+Wed, Apr 24, 2024
+
+Could fetch the entire combos array, redorder the ids then post it back to the server.  I bet putting all names in at once would simplify.
+The way I'm doing it is more of a demonstration of what can be done.  More exactly, what I can do.  
+
+Fetch the entire combos array.  Use js to select a random object by index.  Delete the object, and post the updated array.
+
+For edit and delete, use the find method instead of id.  The ids will end up getting jumbled.  Posting back to combos will result in
+ids not matching the number combinations.  Maybe there is a way to redifine the id based on the numbers.  This would help keep the combos
+in order.  Will posting an object with a defined id be put in the correct numerical order in the combos array?
+
+Try to get edit, post, delete to work with database to have a working app.  
+
+Two feilds for shortname, both with a 6 digit max.  
+
+https://stackoverflow.com/questions/4044845/retrieving-a-property-of-a-json-object-by-index
+
+Could try and convert this app to work on React Native once the db is working correctly.  It would do all the same things.  Maybe another 
+layer of screens when a box is selected.  People could select a name or box and be routed to the persons details and numbers.  Not sure about
+authentication and access to their specific pool.  Just have the same functionality adapted for a mobile phone.  
+
+Thurs, Apr 25, 2024
+
+https://stackoverflow.com/questions/61348598/react-hooks-api-call-does-it-have-to-be-inside-useeffect
+
+https://www.reddit.com/r/reactjs/comments/mgm8o3/why_is_useeffect_used_for_data_fetching/
+
+Looks like I can just put the post request inside a function.  Maybe put this function in a separate file then import.  Remove useState block 
+and make sure it still works.  useState is good for the fetch because it will run it on mount and not every time it re renders (when the state changes).
+
+If you fetch the entire combos array.  Select a random combo by index.  Delete the object.  Optionally reorder the id's, then replace the entire array
+in the database.  Still not sure if I want to reorder the id's or not as this would cause a mismatch of the numbers and id as it is now.  
+
+Whether or not to reorder persons ids will depend on  what is easiest to delete and edit.  If you want the id to match the numbers in combos from a 
+deleted person, you will need to figure out how to generate an id based on the numbers.  
+
+Tues, Apr 30, 2024
+
+Just focusing on delete feature for now.  The edit would have nothing to do with combos.  Less cheating if an edit is not allowed.  Maybe just worry
+about posting and delete.  How to replace an entire array?  Either fetch, delete, post or fetch and replace.  Probably would be better to enter names
+and have the random run at the very end.  For demonstration, I'll just try to get the delete going.  Note that edits currently change the local state,
+but changes are not reflected in db.  Will need to combine the afc nfc to form the new combo id.  Do the post first.  
+
+Maybe try an asynch function?  Figure if fetch can replace without deleting.
+
+https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+
+Mon, May 5, 2024
+
+I could try and omit both, as well as afc nfc.  Reduce combo to an object with just an id, or an array.  Just need to splice the id number.  basically
+back to what I started with.  Use the id to set the afc nfc inputs.  No need for four key values.  
+
+useEffect does state updates after all the code is run?  Still not really understanding useEffect that well.  
+
+Now the app will draw a value from combos array based on index instead of id.  Need to now delete the combo and replace the entire array in db.  
+Note that it can still use the same numbers twice bc the db is not updated.  
+
+Each user would get their own db?  This would be the next step.  Authenticate and be provided unique sets of persons and combos.  
+
+Can just delete from server based on id.  Just look into the inputs and outputs of delete requests.  
+
+Tuesday, May 7, 2024
+
+May be able to consolidate asynch functions.  You would think they are only needed when waiting on a promise.  Try to get it to work, then simplify 
+whereever possible.  
+
+Confusion about how to delete the correct combo in db.  Go back to previous plan of reposting the entire array?  
+
+Also consider adding the time and date each person was posted.
+
+It's a little sloppy, but works.  This will help with delete function.  
+
+Wed, May 8, 2024
+
+Now it is deleting the combo without posting person to db.  It posted to local state but not the db.  I put the two deleted combos back manually.
+
+Fri, May 10, 2024
+
+Tried using spread operator and destructure before delete request.  It is still deleting the persons post in db, though it does delete the correct
+combo.
+
+Try defining the comboId as a state variable and call a function to do the delete request.  Try asych await syntax and just put the delete fetch 
+in a non useEffect function.  Maybe just try delete within useEffect chain after a state or ref variable is declared.  
+
+Tuesday, May 14, 2024
+
+I created a state variable in order to delete a just posted combo.  Have not tried it in delete function but there is already a problem.  The state
+variable delete combo is set after the post, but does not change.  Basically this number is rendered as the previous post combination.  It is changed
+by the program after the delete block is run.  This might have somehting to do with useEffect.  Before setting up another state variable, the correct
+number was fed to the delete request, but for some reason the post was deleted as well.  I could try useRef.  After that, maybe call a function outside
+of the post block to do the delete.  Or the other way around.  Try leaving as state variable, but put the delete fetch in it's own function.  With 
+the fetch method, a promise is initiated.  Don't need any asynch await syntax.  
+
+Try the useEffect first.  See if it changes prior to calling delete.  Make sure it doesn't delete the post.  
+
+Wed, May 15, 2024
+
+useRef solves the problem with the lagging state change.  Checking to see if I can chain a combo delete without deleting the post.  It still deletes
+the post.  I'll try making a separate function for the delete.  
+
+Comma after method: 'DELETE'.  Could have been problem?  No.  
+
+doDelete needs to be asynch?  Try to verify this even if it works.  Calling an asynch function in an asynch function.  Does it wait for the delete to 
+be done before proceding?  Try adding a log in a chain after doDelete is called.  
+
+The post would have the same comboId as the combo.  Maybe it is deleting both for some reason.  Could test this by running the delete function alone.
+Maybe add a button or something to test this.  
+
+Does doDelete need to be defined before calling?  The useEffect may actually help with this.
+
+Function runs right, but delete must be deleting the person as well.   I set up a button on list page to test the delete fetch to see if it deletes
+both the person and combo if called alone.  All the useRef useState discrete function may not matter.  
+
+Thurs, May 16, 2024
+
+Note that the table component does not respond well when there is a gap in the persons ids.  This may be a problem for the delete function.  May 
+have to re id before posting to server is a person is deleted.  
+
+The naming of comboId seems to be the issue.  If I change this variable name, it does not delete the person.  Think of good names for the id keys.
+
+Change the short name input at some point.  Two input fields with a limit of 6 characters.
+
+Using a different name "comboNum" I am able to post a new person and delete the combo object after the values are merged to the person.  Delete
+should basically be this but backwards.  
+
+Could probably trim the fat so to speak.  Reduce App.js down and import the functions.  Get rid of keys in the objects that aren't really needed.
+I think I'll just get the delete to work first.  Could just omit edits all together.  Edit currently changes local state, but not the db.
+
+Cleaned up App.js a little bit.  
+
+Monday, May 20, 2024
+
+Could do some kind of no delete method when posting.  I think what I ended up doing is better.  I'll need to reorient all the ids to get the delete
+to work.  This might be a good time to commit to git.  afc nfc could be just be an array?  If using objects I still think i need an id.  
+

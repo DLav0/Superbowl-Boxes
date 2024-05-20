@@ -2,11 +2,12 @@ import { personsHard, Person, personDB1, combosObj, combos } from "./logical/ran
 import ListItem from './ListItem'
 import { useState, useEffect } from "react";
 import InputForm from "./InputForm";
-import { Col, Container, Row} from 'reactstrap'
+import { Col, Container, Row, Button } from 'reactstrap'
 import PersonCard from "./PersonCard";
 import PersonEdit from "./PersonEdit";
 import ErrorMsg from './ErrorMsg'
 import useFetch from "./logical/useFetch"
+
 
 
 
@@ -22,6 +23,7 @@ const RenderList = (props) => {
     const updatePerson = props.updatePerson
     const isPending = props.isPending
     const errorPass =  props.errorPass
+    const doDelete = props.doDelete
     const [isOpen, toggleModal] = useState(false)
     const [isOpenE, toggleModalE] = useState(false)
     const [selectID, selectedPerson] = useState(0) 
@@ -108,6 +110,9 @@ const RenderList = (props) => {
                 {JSON.stringify(com)},  
                 </div>
             )} */}
+                <Button type='submit' color='primary' onMouseUp={() => console.log('Good Job')}>
+                    Press Button
+                </Button>
 
         </div>
        

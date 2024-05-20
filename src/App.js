@@ -1,5 +1,5 @@
 import { personsHard, Person, combos, Person2 } from "./app/logical/randomBox"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Routes, Route } from 'react-router-dom';
 import RenderList from './app/RenderList'
 import ReduxInit from './app/ReduxInit'
@@ -12,8 +12,6 @@ import useFetch from "./app//logical/useFetch"
 // The app should work if the server is down.  
 
 function App() {
-
-
 
   const [isPending, setIsPending] = useState(true);
   const [errorPass, setError] = useState(null);
@@ -36,9 +34,6 @@ function App() {
     .then(persons => {
           setIsPending(false)
           modPersons(persons)
-          newNumCombos(100-persons.length)
-          
-
         })
         .catch(error => {
           setIsPending(false)
@@ -50,6 +45,10 @@ function App() {
   // Pulled this from nucampsite action creators
   // Ditch useFetch?
 
+  // Should fetch combos in addition to persons on page load?
+
+  // Does useEffect run on state updates, or just when the page mounts?  Just when the page mounts unless another dependancy is defined. 
+
   // It's doing the get request.  
   // Updates the state every time it loads
 
@@ -59,7 +58,8 @@ function App() {
   const [bodySkip, toggleSkip] = useState(false)
   const [bodyEntry, toggleEntry] = useState({name: 'NameGame'})
   const [runPost, togglePost] = useState(false)
-  const [numCombos, newNumCombos] = useState(14)
+  const [combos, newCombos] = useState(null)
+  const numDelete = useRef(0)
 
   // addPerson(personsDB) Infinite loop.
   // If this fetch can work, the state will be updated when names are added to database.  No need to pass props from InputForm.  
@@ -106,18 +106,12 @@ function App() {
 
   useEffect(() => {
 
-
     console.log('Asynch')
-    
     
     if (bodySkip) {
 
-      console.log(numCombos)
-
-      let comboNumIn = Math.floor(Math.random()*numCombos)
-
-      fetch('http://localhost:8000/combos/' + 41)  
-      // Is this based on the combo id or the index in the array?
+      fetch('http://localhost:8000/combos/')  
+      // Is this based on the combo id or the index in the array?  The id.  Thats a problem.
       .then(response => {
           if (response.ok) {
               return response;
@@ -132,7 +126,26 @@ function App() {
         console.log('If I put the catch here, it will show error message and stop the code', error.message); 
       })
       .then(response => response.json())
+      .then(combosArray => {
+        console.log('Just fetched combos')
+        // Is this an infine loop?  Rerenders when state changes and re render changes the state?
+        // I don't think the useEffect runs when the state changes.  I don't think a function would either.  Functions only run when called.
+        // The state changes and the function (or useEffect) block continues?
+        let randComboNum = Math.floor(Math.random()*combosArray.length)
+        let combo = combosArray[randComboNum]
+        return combo
+        // If there is an error with these commands it will show.  catch is for an error retrieving from server.
+        // Needs to return one combo
+        // Loads all the combos.  Selects one randomly.  Delete the selected combo.  Post entire array back to db.
+        }
+      )
+    
+      // have not manipulated server array at this point.
+      // Need combos in local state to make delete?  Now I can delete based on id.  
+
+      
       .then(combo => {
+          combo.comboNum = combo.id
           delete combo.id
           // Could also delete "both" at this point.
           const personX = new Person2(bodyEntry.name, bodyEntry.shortName, bodyEntry.email, persons.length)
@@ -141,21 +154,9 @@ function App() {
           // Post this using POST method.  Need to return this personCombo?
           // Make id out of combo
           })
-      // .catch(error => {
-      //   console.log('with multiple catch in chain, the whole chain will run after messages are shown', error.message);
-      //   alert('Your comment could not be posted\nError: ' + error.message); 
-      // })
-      .then(personCombo => {
-        console.log(personCombo)
-        return personCombo
-        }
-      )
-      // redundant .then() here.  Change later.  
-      // .catch(error => {
-      //   console.log(error)
-      // })
-      // Issue with duplicate id being posted to persons.
-      // Needs {} here?
+
+      // Issue with duplicate id being posted to persons.  I think the above delete command takes care of this.  
+      // Needs {} here?  Seems like it works.
       .then(personCombo =>
       fetch('http://localhost:8000/persons', {
         method: 'POST',
@@ -174,26 +175,30 @@ function App() {
             error.response = response;         
             throw error;   
         }
-    },
+        },
     error => { throw error; }      
     )
-    // .catch(error => {
-    // console.log('This catch is immediately after the persons post fetch', error.message);
-    // })
+
   .then(response => response.json())
   .then(response => {
-    console.log(response)
     console.log('stringthing')
-    const personY = personCombo
+    const personY = response
     modPersons(persons.concat(personY))
-    newNumCombos(numCombos-1)
-    return comboNumIn
+    console.log('completed transaction')
+    return response
     })
-    .then(comboNumIn => {
-      console.log(comboNumIn)
-      console.log(numCombos)
-      console.log('completed transaction')
-    }) 
+    .then(deleteThis => {
+      const {comboNum} = {...deleteThis}
+      numDelete.current = comboNum
+      doDelete(numDelete.current)
+    })
+    // Basically just strips the id number from the person that was just posted.
+    // Am I supposed to only return variables from the function block?
+
+
+     // I think useRef makes a variable that has nothing to do with the state.
+
+    // Response and personCombo is interchangeable here.  Maybe bc personCombo is returned?
     // The state may be updated after the useEffect has run?
     // needs to use ComboNumIn.  May want to do this at another point.  Feel like I want the delete to be last.  
   .catch(error => {
@@ -206,59 +211,8 @@ function App() {
       
 
 
-
-      if (false) {
-      
-      fetch('http://localhost:8000/combos/1', {
-        method: 'DELETE',
-      })
-      .then(res => {
-        return res.json()
-      }) 
-      .then(data => console.log(data))
-
-    }
-
       // Do I need an error and catch here?  Check for the log after the Asynch.
       // Looks like the delete does not return the object being deleted.
-      // I just disabled the delete for now
-      // I prefer the if (false) blocks to the comment syntax.  Just disabling blocks of code I might use later.
-
-      if (false) {
-
-      fetch('http://localhost:8000/persons', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(
-            bodyEntry
-          )
-      }) 
-          .then(response => {
-          if (response.ok) {
-              return response;
-          } else {
-              const error = new Error(`Error ${response.status}: ${response.statusText}`);        
-              error.response = response;         
-              throw error;   
-          }
-      },
-      error => { throw error; }      
-      )
-    .then(response => response.json())
-    .then(response => {
-      console.log(response)
-      console.log('stringthing')
-      const personX = new Person2(response.name, response.shortName, response.email, persons.length)
-      modPersons(persons.concat(personX))
-      })
-    .catch(error => {
-      console.log('post comment', error.message);
-      alert('Your comment could not be posted\nError: ' + error.message); 
-    });
-  }
-  
   }
 
   return () => {
@@ -267,7 +221,27 @@ function App() {
     }
   }, [runPost] ); 
 
+
+  const doDelete = (Num) => {
+    console.log(Num)
+    fetch('http://localhost:8000/combos/'+Num, {
+      method: 'DELETE'
+    })
+    .then(res => {
+      return res.json()
+    }) 
+    .then(data => console.log(data))
+  }
+  
+  // I'll leave the delete function down here.  It will still run sequencially either way.  
+  // Needs catch here?
+
+
+  // I'm wondering if the state updates take place after the entire useEffect block is run.  
+ 
   // You can use js.  Just need to be particular when updating state variables.
+
+  // Could probably just use an asynch function instead of useEffect.  Still not clear on purpose of useEffect.
 
   // I don't think concat is mutating.  Can use mutating functions in useState call?
 
@@ -302,7 +276,7 @@ function App() {
     <div className=''>
       <Routes>
         <Route path='/' element={<Homepage />} />
-        <Route path='/list' element={<RenderList persons={persons} updateState={updateState} updatePerson={updatePerson} isError={isError} isPending={isPending} errorPass={errorPass} />} />
+        <Route path='/list' element={<RenderList persons={persons} updateState={updateState} updatePerson={updatePerson} isError={isError} isPending={isPending} errorPass={errorPass} doDelete={doDelete} />} />
         <Route path='/boxes' element={<Boxes persons={persons} isError={isError} isPending={isPending} errorPass={errorPass} />} />
       </Routes> 
     </div>
@@ -314,3 +288,4 @@ export default App;
 
 // Don't try to mutate a state variable 
 // Local state clears whenever updated.  Pass isPending and errorPass to boxes
+// Function blocks don't run until called.  
