@@ -994,3 +994,58 @@ Monday, May 20, 2024
 Could do some kind of no delete method when posting.  I think what I ended up doing is better.  I'll need to reorient all the ids to get the delete
 to work.  This might be a good time to commit to git.  afc nfc could be just be an array?  If using objects I still think i need an id.  
 
+https://dmitripavlutin.com/javascript-fetch-async-await/
+
+Looking into using asynch await syntax for delete function.  
+
+May want to test the posting.  It does not seem to make anyone with higher numbers.  It is based on the current combo lenght and inputs an index,
+not an id.  It should work.  It just returned 94.  If it was by the ids or something, it probably would not have grabbed a high number.  I think
+it's fine.  
+
+Tues, May 21, 2024
+
+Delete function needs a button.  Pressing button needs to delete the persons post and restore the correct combo object.  Persons will need to have the 
+ids reordered.  Note that this changes everyones id.  I'm not sure if there is another way to do it.  Add another id to persons objects?
+
+The other thing I could to is scafold all 100 persons objects with just an id.  Posting would add the combo data to lowest object without afc nfc keys.
+if no person has been deleted since the last post, this will be the highest id in the array.  So a delete would be posted to first to fill the gap,
+then it would proceed to add persons as normal.  I would have to change the posting method to find the first object with missing data.  This scrambles
+the persons array ids much less.  The other way would end up offsetting all the ids oabove the one deleted by 1.
+
+Start by changing the post method to be able to fill in the lowest gap
+
+Wait, maybe if all the persons are defined, I won't have to worry about missing objects messing up the render.  This will be necessary as a delete must 
+still allow the data to be rendered in the chart.  I guess inherantly this will work.  
+
+So I either leave the post as is and set up a loop in the delting function to re id every person, then post to the server.
+
+Or, I set up all 100 persons with a blank object and change the posting to post to the first empty slot.  This would also need either a loop or a find.
+This would scamble the persons array less.  The loop could find the blank person based on the local state.
+
+Wed, May 22, 2024
+
+Would need a way to filter blanks for at least the list rendering page.  I think I like this fill in the blank method.  Put the delete button in the
+selected person modal.  Note that the app would be better to create the entire list of people, then assign random combos at the end.  I guess this
+is more for demonstration.  Put in all the info, check over and edit, assign all the numbers at once.  
+
+Now get the post to assign to the first blank in the person array.  Do not include edit feature?  
+
+Need to re post the first person blank to db, then change the local state immedietely after.  
+
+Used PUT method to replace the the lowest blank person with a new person defined in the input form.  Need to adjust the local state code to have the
+added person in the right location.  Use similar logic to the person edit.  
+
+persons needs to be updated in the state to provide the correct id for the new post.
+
+combos array is getting confusing with deletes that weren't posted to persons.  Could just replace the whole array, then go through and delete your
+default persons' combos.  I turned off the delete funciton to avoid extra work.  
+
+New posting method works as desired.  Need to set up remaining 85 or so blank persons objects.  Then figure out the reverse process to delete a person
+and return the combo to the combos array.  
+
+Turned back on delete.  This should probably have a catch.  
+
+Note that I modified render list so as not to show blank person objects
+
+Git log "New Post"
+

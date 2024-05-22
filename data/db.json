@@ -129,15 +129,65 @@
       "afc": 3,
       "nfc": 0,
       "comboNum": 30
+    },
+    {
+      "id": 13,
+      "name": "id13",
+      "shortName": "id13",
+      "email": "@13",
+      "both": "",
+      "afc": 8,
+      "nfc": 7,
+      "comboNum": 87
+    },
+    {
+      "id": 14,
+      "name": "Searching",
+      "shortName": "high number ",
+      "email": "@high number",
+      "both": "",
+      "afc": 9,
+      "nfc": 4,
+      "comboNum": 94
+    },
+    {
+      "id": 15,
+      "name": "id15",
+      "shortName": "id15",
+      "email": "@15",
+      "both": "",
+      "afc": 7,
+      "nfc": 4,
+      "comboNum": 74
+    },
+    {
+      "id": 16,
+      "name": "id16",
+      "shortName": "id16",
+      "email": "@16",
+      "both": "",
+      "afc": 6,
+      "nfc": 6,
+      "comboNum": 66
+    },
+    {
+      "id": 17,
+      "name": "id17",
+      "shortName": "id17",
+      "email": "@17",
+      "both": "",
+      "afc": 0,
+      "nfc": 1,
+      "comboNum": 1
+    },
+    {
+      "id": 18
+    },
+    {
+      "id": 19
     }
   ],
   "combos": [
-    {
-      "id": 1,
-      "both": "",
-      "afc": 0,
-      "nfc": 1
-    },
     {
       "id": 2,
       "both": "",
@@ -259,22 +309,10 @@
       "nfc": 4
     },
     {
-      "id": 25,
-      "both": "",
-      "afc": 2,
-      "nfc": 5
-    },
-    {
       "id": 26,
       "both": "",
       "afc": 2,
       "nfc": 6
-    },
-    {
-      "id": 27,
-      "both": "",
-      "afc": 2,
-      "nfc": 7
     },
     {
       "id": 28,
@@ -353,12 +391,6 @@
       "both": "",
       "afc": 4,
       "nfc": 3
-    },
-    {
-      "id": 45,
-      "both": "",
-      "afc": 4,
-      "nfc": 5
     },
     {
       "id": 46,
@@ -451,12 +483,6 @@
       "nfc": 5
     },
     {
-      "id": 66,
-      "both": "",
-      "afc": 6,
-      "nfc": 6
-    },
-    {
       "id": 67,
       "both": "",
       "afc": 6,
@@ -497,12 +523,6 @@
       "both": "",
       "afc": 7,
       "nfc": 3
-    },
-    {
-      "id": 74,
-      "both": "",
-      "afc": 7,
-      "nfc": 4
     },
     {
       "id": 75,
@@ -553,34 +573,22 @@
       "nfc": 2
     },
     {
-      "id": 83,
-      "both": "",
-      "afc": 8,
-      "nfc": 3
-    },
-    {
       "id": 84,
       "both": "",
       "afc": 8,
       "nfc": 4
     },
     {
-      "id": 85,
+      "id": 83,
       "both": "",
       "afc": 8,
-      "nfc": 5
+      "nfc": 3
     },
     {
       "id": 86,
       "both": "",
       "afc": 8,
       "nfc": 6
-    },
-    {
-      "id": 87,
-      "both": "",
-      "afc": 8,
-      "nfc": 7
     },
     {
       "id": 88,
@@ -619,12 +627,6 @@
       "nfc": 3
     },
     {
-      "id": 94,
-      "both": "",
-      "afc": 9,
-      "nfc": 4
-    },
-    {
       "id": 95,
       "both": "",
       "afc": 9,
@@ -635,12 +637,6 @@
       "both": "",
       "afc": 9,
       "nfc": 6
-    },
-    {
-      "id": 97,
-      "both": "",
-      "afc": 9,
-      "nfc": 7
     },
     {
       "id": 98,

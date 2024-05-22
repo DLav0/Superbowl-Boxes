@@ -110,6 +110,10 @@ function App() {
     
     if (bodySkip) {
 
+      let postHere = persons.find((person) => person.name === undefined)
+      console.log(postHere.id)
+
+
       fetch('http://localhost:8000/combos/')  
       // Is this based on the combo id or the index in the array?  The id.  Thats a problem.
       .then(response => {
@@ -143,12 +147,12 @@ function App() {
       // have not manipulated server array at this point.
       // Need combos in local state to make delete?  Now I can delete based on id.  
 
-      
+      // Probably don't need another .then() here.  
       .then(combo => {
           combo.comboNum = combo.id
           delete combo.id
           // Could also delete "both" at this point.
-          const personX = new Person2(bodyEntry.name, bodyEntry.shortName, bodyEntry.email, persons.length)
+          const personX = new Person2(bodyEntry.name, bodyEntry.shortName, bodyEntry.email, postHere.id)
           const personCombo = {...personX, ...combo}
           return personCombo
           // Post this using POST method.  Need to return this personCombo?
@@ -158,8 +162,8 @@ function App() {
       // Issue with duplicate id being posted to persons.  I think the above delete command takes care of this.  
       // Needs {} here?  Seems like it works.
       .then(personCombo =>
-      fetch('http://localhost:8000/persons', {
-        method: 'POST',
+      fetch('http://localhost:8000/persons/' + postHere.id, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -183,19 +187,31 @@ function App() {
   .then(response => {
     console.log('stringthing')
     const personY = response
-    modPersons(persons.concat(personY))
+
+    //modPersons(persons.concat(personY))
+
+    let insertPerson = persons.map((person, i) => {
+      if (i === postHere.id) {
+        return personY;
+      } else {
+        // The rest haven't changed
+        return person;
+      }
+    });
+    modPersons(insertPerson);
+
     console.log('completed transaction')
     return response
     })
     .then(deleteThis => {
       const {comboNum} = {...deleteThis}
       numDelete.current = comboNum
-      doDelete(numDelete.current)
+      doDelete(numDelete.current)  
     })
     // Basically just strips the id number from the person that was just posted.
     // Am I supposed to only return variables from the function block?
 
-
+    // response.json() returns a promise.  
      // I think useRef makes a variable that has nothing to do with the state.
 
     // Response and personCombo is interchangeable here.  Maybe bc personCombo is returned?
@@ -233,6 +249,7 @@ function App() {
     .then(data => console.log(data))
   }
   
+  // Does doDelete need to be an asynch function?  It works the way it is supposed to.  
   // I'll leave the delete function down here.  It will still run sequencially either way.  
   // Needs catch here?
 
@@ -258,7 +275,7 @@ function App() {
     // JSON.parse(JSON.stringify(personZ))[0]
     // updated class to remove nested array. Now the spread method works.  
 
-    const nextPersons = persons.map((person, i) => {
+    let nextPersons = persons.map((person, i) => {
       if (i === userID) {
         return personY;
       } else {

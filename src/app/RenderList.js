@@ -93,8 +93,13 @@ const RenderList = (props) => {
                 <div className="col-md-3"></div>
                 <div className="col-md-8">
                     <div className="list">
-                        {persons.slice(0).reverse().map((person) => 
-                        <ListItem key={person.id} person={person} personID={personID} />
+                        {persons.slice(0).reverse().map((person) => {
+                            if (person.name) {
+                                return (
+                                    <ListItem key={person.id} person={person} personID={personID} />
+                                )
+                            }
+                        }
                         )}
                     </div>
                     <PersonCard person={persons[selectID]} isOpen={isOpen} toggle={toggleModalClose} toggleE={toggleModalCloseE}/>
