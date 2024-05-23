@@ -206,7 +206,7 @@ function App() {
     .then(deleteThis => {
       const {comboNum} = {...deleteThis}
       numDelete.current = comboNum
-      doDelete(numDelete.current)  
+      // doDelete(numDelete.current)  
     })
     // Basically just strips the id number from the person that was just posted.
     // Am I supposed to only return variables from the function block?
@@ -248,6 +248,8 @@ function App() {
     }) 
     .then(data => console.log(data))
   }
+
+  
   
   // Does doDelete need to be an asynch function?  It works the way it is supposed to.  
   // I'll leave the delete function down here.  It will still run sequencially either way.  

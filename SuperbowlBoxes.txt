@@ -1010,7 +1010,7 @@ ids reordered.  Note that this changes everyones id.  I'm not sure if there is a
 The other thing I could to is scafold all 100 persons objects with just an id.  Posting would add the combo data to lowest object without afc nfc keys.
 if no person has been deleted since the last post, this will be the highest id in the array.  So a delete would be posted to first to fill the gap,
 then it would proceed to add persons as normal.  I would have to change the posting method to find the first object with missing data.  This scrambles
-the persons array ids much less.  The other way would end up offsetting all the ids oabove the one deleted by 1.
+the persons array ids much less.  The other way would end up offsetting all the ids above the one deleted by 1.
 
 Start by changing the post method to be able to fill in the lowest gap
 
@@ -1048,4 +1048,16 @@ Turned back on delete.  This should probably have a catch.
 Note that I modified render list so as not to show blank person objects
 
 Git log "New Post"
+
+Thurs, May 23, 2024
+
+Could manually write in all of the blank persons, or use a loop to generate then copy and paste, or generate the remaining blanks and post to the server.
+Not sure if I can post multiple objects at once. Think I'll get the delete function to work first.  After that, add some kind of authentication.  I'll 
+omit the edit for now.  Also to the shortname limit thing.   
+
+Can probably get rid of both in persons and combos.  Just looked around and tested.  Both can be removed from all objects in db.  
+
+Removed all both keys manually.  Everything seems to still work.  
+
+Git log "Remove Both"
 
